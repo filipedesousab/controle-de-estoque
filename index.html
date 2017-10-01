@@ -1,0 +1,263 @@
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- Latest compiled and minified JavaScript -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="js/script.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+</head>
+<body class="home">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                <div class="logo"><img src="img/logo.png" alt="merkery_logo" class="hidden-xs hidden-sm"></div>
+                <div class="navi">
+                    <ul>
+                        <li class="btn-menu btn-home" page="home"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li class="btn-menu btn-vendas" page="vendas"><a href="#" ><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Vendas</span></a></li>
+                        <li class="btn-menu btn-clientes" page="clientes"><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clientes</span></a></li>
+                        <li class="btn-menu btn-produtos" page="produtos"><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Produtos</span></a></li>
+                        <li class="btn-menu btn-fornecedores" page="fornecedores"><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Fornecedores</span></a></li>
+                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Configurações</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align conteudo" pagina-atual="" style="background-color: #132856; display: hidden">
+                <!-- AQUI IRÁ ENTRAR O CONTEÚDO ATUALIZADO PELO JAVASCRIPT -->
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div id="add-produto" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">Adicionar Produto</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="text" placeholder="Nome" name="name">
+                        <input type="text" placeholder="123" name="mail">
+                        <input type="text" placeholder="99,00" name="passsword">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <form id="form-modal" name="" method="post" action="">
+                <div class="modal-body">
+
+                        <input type="text" placeholder="" name="">
+                        <input type="text" placeholder="" name="">
+                        <input type="text" placeholder="" name="">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Cancelar</button>
+                    <input type="submit" class="add-project" data-dismiss="modal" value="Salvar">
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUB PÁGINAS DA PÁGINA INTEX -->
+    <div id="home" style="display: none;">
+        <div class="user-dashboard ">
+            <div class="row">
+                <div class="list-inline dash-content">
+                    <div class="produtos bloco1 col-md-6 dash">
+                        <div class="titulo-dash">Vendas</div>
+                        <ul class="list-inline">
+                            <li class="btn-dash btn-menu" page="vendas"><button class="btn btn-primary btn-dash"><i class="fa fa-list ico-home" aria-hidden="true"></i><br>Listar</button></li>
+                            <li class="btn-dash btn-add-edit" data-tipo="add-venda"><button class="btn btn-primary btn-dash"><i class="fa fa-plus-square-o ico-home" aria-hidden="true"></i><br>Adicionar</button></li>
+                        </ul>
+                    </div>
+                    <div class="produtos bloco1 col-md-6 dash">
+                        <div class="titulo-dash">Produtos</div>
+                        <ul class="list-inline">
+                            <li class="btn-dash btn-menu" page="produtos"><button class="btn btn-primary btn-dash"><i class="fa fa-list ico-home" aria-hidden="true"></i><br>Listar</button></li>
+                            <li class="btn-dash btn-add-edit" data-tipo="add-produto"><button class="btn btn-primary btn-dash"><i class="fa fa-plus-square-o ico-home" aria-hidden="true"></i><br>Adicionar</button></li>
+                        </ul>
+                    </div>
+                    <div class="produtos bloco1 col-md-6 dash">
+                        <div class="titulo-dash">Clientes</div>
+                        <ul class="list-inline">
+                            <li class="btn-dash btn-menu" page="clientes"><button class="btn btn-primary btn-dash"><i class="fa fa-list ico-home" aria-hidden="true"></i><br>Listar</button></li>
+                            <li class="btn-dash btn-add-edit" data-tipo="add-cliente"><button class="btn btn-primary btn-dash"><i class="fa fa-plus-square-o ico-home" aria-hidden="true"></i><br>Adicionar</button></li>
+                        </ul>
+                    </div>
+                    <div class="produtos bloco1 col-md-6 dash">
+                        <div class="titulo-dash">Fornecedores</div>
+                        <ul class="list-inline">
+                            <li class="btn-dash btn-menu" page="fornecedores"><button class="btn btn-primary btn-dash"><i class="fa fa-list ico-home" aria-hidden="true"></i><br>Listar</button></li>
+                            <li class="btn-dash btn-add-edit" data-tipo="add-fornecedor"><button class="btn btn-primary btn-dash"><i class="fa fa-plus-square-o ico-home" aria-hidden="true"></i><br>Adicionar</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="produtos" style="display: none;">
+        <div class="produtos-dashboard">
+            <table class="table lista">
+                <thead class="thead">
+                    <tr>
+                        <td>Nome</td>
+                        <td>Quantidade</td>
+                        <td>Preço</td>
+                        <td>Ação</td>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>Celular</td>
+                        <td>20</td>
+                        <td>R$900,00</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Televisão</td>
+                        <td>15</td>
+                        <td>R$1200,00</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Rádio</td>
+                        <td>10</td>
+                        <td>R$700,00</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="vendas" style="display: none;">
+        <div class="produtos-dashboard">
+            <table class="table lista">
+                <thead class="thead">
+                    <tr>
+                        <td>Vendas</td>
+                        <td>Cliente</td>
+                        <td>Total</td>
+                        <td>Ação</td>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>55657</td>
+                        <td>Tercia Cristina</td>
+                        <td>R$1200,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>55654</td>
+                        <td>Silvio Ronaldo</td>
+                        <td>R$700,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="clientes" style="display: none;">
+        <div class="produtos-dashboard">
+            <table class="table lista">
+                <thead class="thead">
+                    <tr>
+                        <td>Nome</td>
+                        <td>CNPJ</td>
+                        <td>Endereço</td>
+                        <td>Ação</td>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>David Espinilo</td>
+                        <td>72.356.373/0001-00</td>
+                        <td>Rua R, 555, Natal - RN</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-cliente"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Tercia Cristina</td>
+                        <td>66.860.480/0001-79</td>
+                        <td>Rua Qualquer, 26, Recife - PE</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-cliente"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Silvio Ronaldo</td>
+                        <td>37.437.771/0001-50</td>
+                        <td>Rua do rio, 100, Caruaru - PE</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-cliente"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="fornecedores" style="display: none;">
+        <div class="produtos-dashboard">
+            <table class="table lista">
+                <thead class="thead">
+                    <tr>
+                        <td>Nome</td>
+                        <td>CNPJ</td>
+                        <td>Endereço</td>
+                        <td>Ação</td>
+                    </tr>
+                </thead>
+                <tbody class="tbody">
+                    <tr>
+                        <td>Samsung</td>
+                        <td>72.356.373/0001-00</td>
+                        <td>Rua R, 555, Natal - RN</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-fornecedor"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Somy</td>
+                        <td>66.860.480/0001-79</td>
+                        <td>Rua Qualquer, 26, Recife - PE</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-fornecedor"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Brastemp</td>
+                        <td>37.437.771/0001-50</td>
+                        <td>Rua do rio, 100, Caruaru - PE</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-fornecedor"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
