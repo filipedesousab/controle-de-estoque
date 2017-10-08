@@ -1,3 +1,8 @@
+/*
+ * Esse arquivo está sendo modificado
+ * @Filipe
+ */
+
 $(document).ready(function(){
 	$('[data-toggle="offcanvas"]').click(function(){
 	   $("#navigation").toggleClass("hidden-xs");
@@ -9,11 +14,12 @@ $(document).ready(function(){
 	}
 
 	function chamarPagina(page) {
-		$("div.conteudo").html($("#"+page).html());
-		$("div.conteudo").attr("pagina-atual",page);
+		$("div .conteudo").html($("#"+page).html());
+		$("div .conteudo").attr("pagina-atual",page);
 		ativarBtn(".btn-"+page);
 		$(document).ready();
 	}
+	chamarPagina('home');
 
 	$(document).on("click",".btn-menu", function () {
    		console.log($(this).attr('page'));
@@ -27,6 +33,7 @@ $(document).ready(function(){
 				criarModal({
 					'titulo':'Adicionar Venda',
 					'formName':'add-venda',
+					'class':'nome-validate',
 					'inputs':[
 						{
 							'type':'text',
@@ -155,7 +162,7 @@ $(document).ready(function(){
 		var string = "";
 		for (var i = 0;i < conteudo.inputs.length; i++) {
 			if(conteudo.inputs[i].type == "text"){
-				string += "<input type='"+conteudo.inputs[i].type+"' name='"+conteudo.inputs[i].name+"' placeholder='"+conteudo.inputs[i].placeholder+"' value='";
+				string += "<input class='"+conteudo.class+"' type='"+conteudo.inputs[i].type+"' name='"+conteudo.inputs[i].name+"' placeholder='"+conteudo.inputs[i].placeholder+"' value='";
 				string += conteudo.inputs[i].value != undefined ? conteudo.inputs[i].value : '';
 				string += "'>";
 			}else if(conteudo.inputs[i].type == "select"){
@@ -171,5 +178,11 @@ $(document).ready(function(){
 		$("#modal .modal-body").html(string);
 		$('#modal').modal();
 	}
-	chamarPagina('home');
+
+	$(document).on("keyup", ".nome-validate", function (argument) {
+		console.log($(this).val());
+		if($(this).val().match(/[a-zA-Z]+/)){
+			console.log("Caracteres inválidos");
+		}
+	});
 });
