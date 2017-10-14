@@ -7,9 +7,9 @@ namespace ControleEstoque.Models.Entities
         public int Id { get; set; }
         public string Nome { get; set; }
         public DateTime DataNascimento { get; set; }
-        public bool IsPerfilCliente { get; set; }
-        public bool IsPerfilVendedor { get; set; }
-        public bool IsPerfilFornecedor { get; set; }
+        public char PerfilCliente { get; set; }
+        public char PerfilVendedor { get; set; }
+        public char PerfilFornecedor { get; set; }
         public string Documento { get; set; }
         public string TipoDocumento { get; set; }
         public string Email { get; set; }
