@@ -513,25 +513,73 @@
             <form action="#" method="post" id="form-novo" class="form">
                 <div class="form-add-edit">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-group">
                                 <span class="input-group-addon">Nome</span>
                                 <input type="text" name="nome" ng-model="Fornecedor.Nome" placeholder="Nome do fornecedor" class="form-control nome-validate" />
                                 <div class="nome input-group-addon campo-erro" style="display:none;"></div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="input-group">
-                                <span class="input-group-addon">Documento</span>
-                                <input type="text" ng-model="Fornecedor.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" />
+                                <span class="input-group-addon">Email</span>
+                                <input type="text" ng-model="Fornecedor.Email" placeholder="fornecedor@fornecedor.com" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <span class="input-group-addon">DDD</span>
+                                <input type="text" ng-model="Fornecedor.DDD" placeholder="81" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <span class="input-group-addon">Fone</span>
+                                <input type="text" ng-model="Fornecedor.Telefone" placeholder="3033-2022" class="form-control nome-validate" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">CNPJ</span>
+                                <input type="text" ng-model="Fornecedor.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="input-group">
                                 <span class="input-group-addon">Endereço</span>
-                                <input type="number" ng-model="Fornecedor.Endereco" placeholder="Rua R, 555, Natal - RN" class="form-control" />
+                                <input type="number" ng-model="Fornecedor.Endereco" placeholder="Rua R, 555" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Bairro</span>
+                                <input type="number" ng-model="Fornecedor.Bairro" placeholder="Socorro" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Cidade</span>
+                                <input type="number" ng-model="Fornecedor.Cidade" placeholder="Jaboatão" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <span class="input-group-addon">UF</span>
+                                <input type="number" ng-model="Fornecedor.Uf" placeholder="PE" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">CEP</span>
+                                <input type="number" ng-model="Fornecedor.Endereco" placeholder="54160-660" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
                             </div>
                         </div>
                         <div class="col-md-3">
