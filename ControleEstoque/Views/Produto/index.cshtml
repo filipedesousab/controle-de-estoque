@@ -2,37 +2,62 @@
     ViewBag.Title = "CCO Eletro - Produtos";
 }
 
-<div id="produtos">
-    <div class="produtos-dashboard">
-        <table class="table lista">
-            <thead class="thead">
-                <tr>
-                    <td>Nome</td>
-                    <td>Quantidade</td>
-                    <td>Preço</td>
-                    <td>Ação</td>
-                </tr>
-            </thead>
-            <tbody class="tbody">
-                <tr>
-                    <td>Celular</td>
-                    <td>20</td>
-                    <td>R$900,00</td>
-                    <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Televisão</td>
-                    <td>15</td>
-                    <td>R$1200,00</td>
-                    <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Rádio</td>
-                    <td>10</td>
-                    <td>R$700,00</td>
-                    <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
-                </tr>
-            </tbody>
-        </table>
+<form action="#" method="post" id="form-novo" class="form">
+    <div class="form-add-edit">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Nome</span>
+                    <input type="text" name="nome" ng-model="Produto.Nome" placeholder="Nome do produto" class="form-control nome-validate" />
+                    <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Descrição</span>
+                    <input type="text" name="descricao" ng-model="Produto.Descricao" value="" placeholder="Produto X" class="form-control nome-validate" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon">Quantidade</span>
+                    <input type="number" name="quantidade" ng-model="Produto.Quantidade" value="" placeholder="99" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <span class="input-group-addon">Preço R$</span>
+                    <input type="text" name="descricao" ng-model="Produto.Preco" id="money" class="form-control money" placeholder="99,90" value="0,00" />
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="input-group">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+            </div>
+        </div>
     </div>
-</div>
+</form>
+<table class="table lista">
+    <thead class="thead">
+        <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        <tr ng-repeat="Produto in Produtos">
+            <td>{{Produto.Nome}}</td>
+            <td>{{Produto.Documento}}</td>
+            <td>{{Produto.Endereco}}</td>
+            <td>{{Produto.Acao}}</td>
+        </tr>
+    </tbody>
+</table>
