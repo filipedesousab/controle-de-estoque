@@ -2,37 +2,51 @@
     ViewBag.Title = "CCO Eletro - Fornecedores";
 }
 
-<div id="fornecedores">
-    <div class="produtos-dashboard">
-        <table class="table lista">
-            <thead class="thead">
-                <tr>
-                    <td>Nome</td>
-                    <td>CNPJ</td>
-                    <td>Endereço</td>
-                    <td>Ação</td>
-                </tr>
-            </thead>
-            <tbody class="tbody">
-                <tr>
-                    <td>Samsung</td>
-                    <td>72.356.373/0001-00</td>
-                    <td>Rua R, 555, Natal - RN</td>
-                    <td><a href="#" class="btn-add-edit" data-tipo="edit-fornecedor"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Somy</td>
-                    <td>66.860.480/0001-79</td>
-                    <td>Rua Qualquer, 26, Recife - PE</td>
-                    <td><a href="#" class="btn-add-edit" data-tipo="edit-fornecedor"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
-                </tr>
-                <tr>
-                    <td>Brastemp</td>
-                    <td>37.437.771/0001-50</td>
-                    <td>Rua do rio, 100, Caruaru - PE</td>
-                    <td><a href="#" class="btn-add-edit" data-tipo="edit-fornecedor"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
-                </tr>
-            </tbody>
-        </table>
+<form action="#" method="post" id="form-novo" class="form">
+    <div class="form-add-edit">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Nome</span>
+                    <input type="text" name="nome" ng-model="Fornecedor.Nome" placeholder="Nome do fornecedor" class="form-control nome-validate" />
+                    <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Documento</span>
+                    <input type="text" ng-model="Fornecedor.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="input-group">
+                    <span class="input-group-addon">Endereço</span>
+                    <input type="number" ng-model="Fornecedor.Endereco" placeholder="Rua R, 555, Natal - RN" class="form-control" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="submit" ng-click="adicionarFornecedor(Fornecedor)"  value="Salvar" class="form-control btn btn-primary" />
+            </div>
+        </div>
     </div>
-</div>
+</form>
+<table class="table lista">
+    <thead class="thead">
+        <tr>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Endereço</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody class="tbody">
+        <tr ng-repeat="Fornecedor in Fornecedores">
+            <td>{{Fornecedor.Nome}}</td>
+            <td>{{Fornecedor.Documento}}</td>
+            <td>{{Fornecedor.Endereco}}</td>
+            <td>{{Fornecedor.Acao}}</td>
+        </tr>
+    </tbody>
+</table>

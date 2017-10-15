@@ -1,17 +1,25 @@
-<html>
+﻿<html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Controle de Vendas. Projeto da cadeira de Desenvolvimento de Interfaces Inteligentes CCO6NA - Faculdade dos Guararapes">
+    <meta name="keywords" content="HTML,CSS,JSON,JavaScript,jQuery,Bootstrap">
+    <meta name="author" content="Filipe Botelho, Luiz Enrrique, David Espinilo, Silvio Ronaldo, Tercia Cristina">
+    <title>Controle de Vendas</title>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<!-- Latest compiled and minified JavaScript -->
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<script type="text/javascript" src="js/script.js"></script>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.maskMoney.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
 
 </head>
-<body class="home">
+<body class="container-principal">
     <div class="container-fluid display-table">
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
@@ -19,6 +27,7 @@
                 <div class="navi">
                     <ul>
                         <li class="btn-menu btn-home" page="home"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li class="btn-menu btn-nova-pagina" page="nova-pagina"><a href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Nova Página</span></a></li>
                         <li class="btn-menu btn-vendas" page="vendas"><a href="#" ><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Vendas</span></a></li>
                         <li class="btn-menu btn-clientes" page="clientes"><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Clientes</span></a></li>
                         <li class="btn-menu btn-produtos" page="produtos"><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Produtos</span></a></li>
@@ -122,8 +131,46 @@
             </div>
         </div>
     </div>
-    <div id="produtos" style="display: none;">
+    <!-- Teste -->
+    <div id="nova-pagina" style="display: none;">
         <div class="produtos-dashboard">
+            <form action="#" method="post" id="form-novo" class="form">
+                <div class="form-add-edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nome</span>
+                                <input type="text" name="nome" ng-model="{{Pessoa.Nome}}" placeholder="Nome do produto" class="form-control nome-validate" />
+                                <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Descrição</span>
+                                <input type="text" name="descricao" value="" placeholder="Produto X" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Quantidade</span>
+                                <input type="number" name="descricao" value="" placeholder="99" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Preço R$</span>
+                                <!-- <input type="text" name="descricao" value="" placeholder="99,99" class="form-control money" /> -->
+                                <input type="text" name="descricao" id="money" class="form-control money" placeholder="99,90" value="0,00" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
             <table class="table lista">
                 <thead class="thead">
                     <tr>
@@ -160,18 +207,188 @@
             </table>
         </div>
     </div>
-    <div id="vendas" style="display: none;">
+    <!-- Página de Produtos -->
+    <div id="produtos" style="display: none;">
         <div class="produtos-dashboard">
+            <form action="#" method="post" id="form-novo" class="form">
+                <div class="form-add-edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nome</span>
+                                <input type="text" name="nome" ng-model="{{Produto.Nome}}" placeholder="Nome do produto" class="form-control nome-validate" />
+                                <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Descrição</span>
+                                <input type="text" name="descricao" ng-model="{{Produto.Descricao}}" value="" placeholder="Produto X" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Quantidade</span>
+                                <input type="number" name="quantidade" ng-model="{{Produto.Quantidade}}" value="" placeholder="99" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Preço R$</span>
+                                <!-- <input type="text" name="descricao" value="" placeholder="99,99" class="form-control money" /> -->
+                                <input type="text" name="descricao" ng-model="{{Produto.Preco}}" id="money" class="form-control money" placeholder="99,90" value="0,00" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
             <table class="table lista">
                 <thead class="thead">
                     <tr>
-                        <td>Vendas</td>
-                        <td>Cliente</td>
-                        <td>Total</td>
-                        <td>Ação</td>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody class="tbody">
+                    <tr>
+                        <td>Celular</td>
+                        <td>Celular Smartphone J5</td>
+                        <td>20</td>
+                        <td>R$900,00</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Televisão</td>
+                        <td>TV 29" com Cconversor Digital</td>
+                        <td>15</td>
+                        <td>R$1200,00</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Rádio</td>
+                        <td>Microsystem 200RMS</td>
+                        <td>10</td>
+                        <td>R$700,00</td>
+                        <td><a href="#" class="btn-add-edit" data-tipo="edit-produto"><i class="fa fa-edit" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-close" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Páginas de Vendas -->
+    <div id="vendas" style="display: none;">
+        <div class="produtos-dashboard">
+            <form action="#" method="post" id="form-novo" class="form">
+                <div class="form-add-edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Venda</span>
+                                <input type="text" name="nome" ng-model="{{Produto.Vendas}}" placeholder="Nome do produto" class="form-control nome-validate" />
+                                <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Cliente</span>
+                                <input type="text" ng-model="{{Produto.Cliente}}" placeholder="Produto X" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Total</span>
+                                <input type="number" ng-model="{{Produto.Total}}" placeholder="99" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Tabela de Vendas -->
+
+            <table class="table lista table-head">
+                <thead class="thead">
+                    <tr>
+                        <th class="tam-nome">Produto</th>
+                        <th class="tam-descricao">Descição</th>
+                        <th class="tam-preco">Preço</th>
+                        <th class="tam-quantidade">Quantidade</th>
+                        <th class="tam-acao">Ação</th>
+                    </tr>
+                </thead>
+            </table>
+            <div class="vendas-vendas">
+            <table class="table lista">
+                <tbody class="tbody">
+                    <tr>
+                        <td class="tam-nome">Rádio</td>
+                        <td class="tam-descricao">Microsystem 200RMS</td>
+                        <td class="tam-preco">R$700,00</td>
+                        <th class="tam-quantidade">1</th>
+                        <td class="tam-acao"><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td class="tam-nome">Rádio</td>
+                        <td class="tam-descricao">Microsystem 200RMS</td>
+                        <td class="tam-preco">R$700,00</td>
+                        <th class="tam-quantidade">1</th>
+                        <td class="tam-acao"><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td class="tam-nome">Rádio</td>
+                        <td class="tam-descricao">Microsystem 200RMS</td>
+                        <td class="tam-preco">R$700,00</td>
+                        <th class="tam-quantidade">1</th>
+                        <td class="tam-acao"><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td class="tam-nome">Rádio</td>
+                        <td class="tam-descricao">Microsystem 200RMS</td>
+                        <td class="tam-preco">R$700,00</td>
+                        <th class="tam-quantidade">1</th>
+                        <td class="tam-acao"><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td class="tam-nome">Rádio</td>
+                        <td class="tam-descricao">Microsystem 200RMS</td>
+                        <td class="tam-preco">R$700,00</td>
+                        <th class="tam-quantidade">1</th>
+                        <td class="tam-acao"><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td class="tam-nome">Rádio</td>
+                        <td class="tam-descricao">Microsystem 200RMS</td>
+                        <td class="tam-preco">R$700,00</td>
+                        <th class="tam-quantidade">1</th>
+                        <td class="tam-acao"><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <!-- Tabela de Produtos -->
+            <div class="vendas-produtos">
+            <table class="table lista table-head fixed">
+                <thead class="">
+                    <tr>
+                        <th>Vendas</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody class="">
                     <tr>
                         <td>55658</td>
                         <td>David Espinilo</td>
@@ -179,23 +396,85 @@
                         <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                     </tr>
                     <tr>
-                        <td>55657</td>
-                        <td>Tercia Cristina</td>
-                        <td>R$1200,00</td>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
                         <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                     </tr>
                     <tr>
-                        <td>55654</td>
-                        <td>Silvio Ronaldo</td>
-                        <td>R$700,00</td>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
+                        <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>55658</td>
+                        <td>David Espinilo</td>
+                        <td>R$900,00</td>
                         <td><a href="#"><i class="fa fa-times-circle" aria-hidden="true"></i></a></td>
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </div>
     <div id="clientes" style="display: none;">
         <div class="produtos-dashboard">
+            <form action="#" method="post" id="form-novo" class="form">
+                <div class="form-add-edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nome</span>
+                                <input type="text" name="nome" ng-model="{{Produto.Nome}}" placeholder="Nome do produto" class="form-control nome-validate" />
+                                <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nascimento</span>
+                                <input type="text" name="descricao" ng-model="{{Produto.Descricao}}" value="" placeholder="Produto X" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Documento</span>
+                                <input type="number" name="quantidade" ng-model="{{Produto.Quantidade}}" value="" placeholder="99" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Endereço</span>
+                                <!-- <input type="text" name="descricao" value="" placeholder="99,99" class="form-control money" /> -->
+                                <input type="text" name="descricao" ng-model="{{Produto.Endereco}}" id="money" class="form-control money" placeholder="99,90" value="0,00" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
             <table class="table lista">
                 <thead class="thead">
                     <tr>
@@ -228,18 +507,55 @@
             </table>
         </div>
     </div>
+    <!-- Página de Fornecedores -->
     <div id="fornecedores" style="display: none;">
         <div class="produtos-dashboard">
+            <form action="#" method="post" id="form-novo" class="form">
+                <div class="form-add-edit">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nome</span>
+                                <input type="text" name="nome" ng-model="Fornecedor.Nome" placeholder="Nome do fornecedor" class="form-control nome-validate" />
+                                <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Documento</span>
+                                <input type="text" ng-model="Fornecedor.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <span class="input-group-addon">Endereço</span>
+                                <input type="number" ng-model="Fornecedor.Endereco" placeholder="Rua R, 555, Natal - RN" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" ng-click="adicionarFornecedor(Fornecedor)"  value="Salvar" class="form-control btn btn-primary" />
+                        </div>
+                    </div>
+                </div>
+            </form>
             <table class="table lista">
                 <thead class="thead">
                     <tr>
-                        <td>Nome</td>
-                        <td>CNPJ</td>
-                        <td>Endereço</td>
-                        <td>Ação</td>
+                        <th>Nome</th>
+                        <th>CNPJ</th>
+                        <th>Endereço</th>
+                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody class="tbody">
+                    <tr ng-repeat="Fornecedor in Fornecedores">
+                        <td>{{Fornecedor.Nome}}</td>
+                        <td>{{Fornecedor.Documento}}</td>
+                        <td>{{Fornecedor.Endereco}}</td>
+                        <td>{{Fornecedor.Acao}}</td>
+                    </tr>
                     <tr>
                         <td>Samsung</td>
                         <td>72.356.373/0001-00</td>

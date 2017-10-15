@@ -1,4 +1,91 @@
-/*Main CSS*/
+﻿/*Main CSS*/
+
+
+.fixed {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.fixed th {
+  text-decoration: underline;
+}
+.fixed th,
+.fixed td {
+  padding: 5px;
+  text-align: left;
+  min-width: 100px;
+}
+
+
+.fixed thead {
+  background-color: red;
+  color: #fdfdfd;
+}
+.fixed thead tr {
+  display: block;
+  position: relative;
+}
+.fixed tbody {
+  display: block;
+  overflow: auto;
+  width: 100%;
+  height: 26%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+
+.vendas-vendas, .vendas-produtos{
+    height: 26%;
+    overflow: auto;
+    margin-bottom: 11px;
+}
+table.table.lista.table-head{
+    margin-bottom: 0px;
+    text-align: center;
+}
+table.table.lista.table-head th{
+    text-align: center;
+}
+.tam-nome, .tam-nome{
+    width: 325px;
+}
+.tam-descricao, .tam-descricao{
+    width: 325px;
+}
+.tam-preco, .tam-preco{
+    width: 110px;
+}
+.tam-quantidade, .tam-quantidade{
+    width: 110px;
+}
+.tam-acao, .tam-acao{
+    min-width: 100px;
+}
+
+.vendas-vendas .tbody, .vendas-produtos .tbody{
+
+}
+.input-group-addon:first-child{
+    border: 1px solid #8694b3;
+    border-right: 0px;
+}
+span ~ .form-control{
+    border: 1px solid #8694b3;
+}
+.campo-erro {
+    background-color: rgb(255, 235, 235);
+    box-shadow: rgb(255, 62, 62) 0px 0px 5px 1px;
+}
+.form-add-edit {
+    padding: 10px;
+}
+.form-add-edit .row{
+    padding-bottom: 5px;
+}
+.validacao-erro {
+    font-weight: bold;
+    color: #de4444;
+}
 i.fa.ico-home {
     font-size: 30px;
 }
@@ -20,6 +107,7 @@ thead{
 .produtos-dashboard{
     background-color: #fff;
     margin: 20px 0px 0px 0px;
+    height: 95%;
 }
 .titulo-dash {
     font-size: 20px;
@@ -246,8 +334,9 @@ li,ul{
 
 /*Home Page*/
 
-.home {
+.container-principal {
     background: #f6f7fa;
+    overflow: hidden;
 }
 
 #navigation {
