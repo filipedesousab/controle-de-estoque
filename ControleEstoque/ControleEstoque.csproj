@@ -266,6 +266,7 @@
     <Content Include="Lib\Font-awesome\scss\_screen-reader.scss" />
     <Content Include="Lib\Font-awesome\scss\_stacked.scss" />
     <Content Include="Lib\Font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\Views\fornecedor.js" />
     <Content Include="Scripts\Views\home.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
