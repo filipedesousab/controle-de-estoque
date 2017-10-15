@@ -171,6 +171,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\VendedorController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\ConfiguracoesController.cs" />
@@ -266,7 +267,6 @@
     <Content Include="Lib\Font-awesome\scss\_stacked.scss" />
     <Content Include="Lib\Font-awesome\scss\_variables.scss" />
     <Content Include="Scripts\Views\home.js" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

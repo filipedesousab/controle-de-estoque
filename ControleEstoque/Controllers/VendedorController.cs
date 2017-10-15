@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ControleEstoque.Controllers
 {
-    public class FornecedorController : Controller
+    public class VendedorController : Controller
     {
         public ActionResult Index()
         {
@@ -16,14 +16,14 @@ namespace ControleEstoque.Controllers
         }
 
         /// <summary>
-        /// Método responsável por listar os fornecedores ativos
+        /// Método responsável por listar os vendedores ativos
         /// </summary>
         /// <returns>Uma lista JSON</returns>
         [HttpGet]
-        public JsonResult ListarFornecedoresAtivos()
+        public JsonResult ListarVendedoresAtivos()
         {
             Pessoa pessoa = new Pessoa();
-            pessoa.PerfilFornecedor = 'S';
+            pessoa.PerfilVendedor = 'S';
             pessoa.Status = 'A';
 
             PessoaDal pessoaDal = new PessoaDal();

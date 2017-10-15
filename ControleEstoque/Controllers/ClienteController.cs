@@ -15,11 +15,20 @@ namespace ControleEstoque.Controllers
             return View();
         }
 
-        [HttpPost]
-        public string Adicionar(Pessoa pessoa)
+        /// <summary>
+        /// Método responsável por listar os clientes ativos
+        /// </summary>
+        /// <returns>Uma lista JSON</returns>
+        [HttpGet]
+        public JsonResult ListarClientesAtivos()
         {
-            PessoaController pc = new PessoaController();
-            return pc.Adicionar(pessoa);
+            Pessoa pessoa = new Pessoa();
+            pessoa.PerfilCliente = 'S';
+            pessoa.Status = 'A';
+
+            PessoaDal pessoaDal = new PessoaDal();
+            var list = pessoaDal.ObterRegistrosComFiltro(pessoa);
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
     }
 }
