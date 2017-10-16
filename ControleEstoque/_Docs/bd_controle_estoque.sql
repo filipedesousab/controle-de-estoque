@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 07-Out-2017 às 17:35
+-- Generation Time: 16-Out-2017 às 05:31
 -- Versão do servidor: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -5672,7 +5672,7 @@ CREATE TABLE `tb_pessoa` (
   `pes_bairro` varchar(70) NOT NULL,
   `pes_cep` char(8) NOT NULL,
   `mun_id` int(11) NOT NULL,
-  `pes_data_cad` int(11) NOT NULL,
+  `pes_data_cad` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pes_data_atualizacao` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pes_status` char(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

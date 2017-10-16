@@ -340,7 +340,7 @@ namespace ControleEstoque.DAL
                 string query = @"SELECT COUNT(*) FROM tb_pessoa WHERE pes_email = @Email"; // SQL
                 MySqlCommand cmd = new MySqlCommand(query, conn); // Vincular a query SQL com a conexão
                 cmd.Parameters.AddWithValue("@Email", pessoa.Email.Trim());
-                int lines = (int)cmd.ExecuteScalar(); // Executa a query e "line" guarda o número de linhas afetadas
+                long lines = (long)cmd.ExecuteScalar(); // Executa a query e "line" guarda o número de linhas afetadas
 
                 if (lines > 0) //Se o número de lines for maior que 0 já existe registros
                 {

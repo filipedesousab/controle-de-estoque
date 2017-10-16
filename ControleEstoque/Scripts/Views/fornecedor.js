@@ -6,7 +6,7 @@ app.controller('FornecedorController', function ($scope, $http) {
         $http({
             url: '/Pessoa/Adicionar',
             method: 'POST',
-            data: { firma: $scope.Pessoa }
+            data: { Pessoa: $scope.Pessoa }
         })
             .success(function (data, status, headers, config) {
                 var msgAlerta = data == -1 ? "Erro no cadastro" : "Cadastrado com sucesso";

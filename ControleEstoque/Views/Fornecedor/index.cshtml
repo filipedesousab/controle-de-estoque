@@ -5,7 +5,7 @@
 
 
 <div id="home" ng-controller="FornecedorController">
-    <form action="#" method="post" id="form-novo" class="form">
+    <form name="myForm" ng-submit="adicionarFornecedor()" novalidate>
         <div class="form-add-edit">
             <div class="row">
                 <div class="col-md-4">
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <input type="submit" ng-click="adicionarFornecedor()" value="Salvar" class="form-control btn btn-primary" />
+                    <button type="submit" class="form-control btn btn-primary">Salvar</button>
                 </div>
             </div>
         </div>
