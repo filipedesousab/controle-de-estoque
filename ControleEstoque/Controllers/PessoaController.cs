@@ -106,8 +106,8 @@ namespace ControleEstoque.Controllers
         [HttpPost]
         public bool Deletar(int idPessoa)
         {
-            PessoaDal notaFiscalDal = new PessoaDal();
-            return notaFiscalDal.Deletar(idPessoa);
+            PessoaDal pessoaDal = new PessoaDal();
+            return pessoaDal.Deletar(idPessoa);
         }
     }
 }

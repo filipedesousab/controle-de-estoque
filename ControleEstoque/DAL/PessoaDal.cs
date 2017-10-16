@@ -152,7 +152,8 @@ namespace ControleEstoque.DAL
             }
             finally
             {
-                Connection.CloseConnection(); // fecha a conexão com o banco.
+                if (conn.State == ConnectionState.Open)
+                    Connection.CloseConnection(); // fecha a conexão com o banco.
             }
         }
 
