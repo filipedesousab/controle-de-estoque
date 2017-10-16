@@ -78,7 +78,7 @@ namespace ControleEstoque.DAL
             try
             {
                 List<Produto> produtos = new List<Produto>(); // Cria uma lista de objetos
-                string query = @"SELECT tb_produto.*, tb_pessoa FROM tb_produto INNER JOIN tb_pessoa ON tb_produto.pes_id = tb_pessoa.pes_id"; // SQL
+                string query = @"SELECT tb_produto.*, tb_pessoa.* FROM tb_produto INNER JOIN tb_pessoa ON tb_produto.pes_id = tb_pessoa.pes_id"; // SQL
                 MySqlCommand cmd = new MySqlCommand(query, conn); // Vincula comando SQL com conexão
                 MySqlDataReader dados = cmd.ExecuteReader(); // Aguarda o resultado em um data Reader
 

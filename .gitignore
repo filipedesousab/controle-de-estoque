@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/ControleEstoque/bin
+/ControleEstoque/obj/Debug
+/packages
