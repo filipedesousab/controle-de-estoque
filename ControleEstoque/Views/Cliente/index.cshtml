@@ -10,26 +10,29 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Nome</span>
-                        <input type="text" ng-model="Pessoa.Nome" placeholder="Nome do Cliente" id="nome" class="form-control nome-validate" />
+                        <input type="text" name="nome" ng-model="Pessoa.Nome" placeholder="Nome do Cliente" id="nome" class="form-control nome-validate" />
                         <div class="nome input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Email</span>
-                        <input type="text" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control nome-validate" />
+                        <input type="text" name="email" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control email-validate" />
+                        <div class="email input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">DDD</span>
-                        <input type="text" ng-model="Pessoa.Ddd" placeholder="81" id="ddd" class="form-control nome-validate" />
+                        <input type="number" name="ddd" ng-model="Pessoa.Ddd" placeholder="81" id="ddd" class="form-control ddd-validate" />
+                        <div class="ddd input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">Fone</span>
-                        <input type="text" ng-model="Pessoa.Telefone" placeholder="3033-2022" id="telefone" class="form-control nome-validate" />
+                        <input type="text"name="telefone" ng-model="Pessoa.Telefone" placeholder="3033-2022" id="telefone" class="form-control telefone-validate" />
+                        <div class="telefone input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -37,25 +40,29 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CPF</span>
-                        <input type="number" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control" />
+                        <input type="number" name="documento" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control documento-validate" />
+                        <div class="documento input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Nascimento</span>
-                        <input type="text" ng-model="Cliente.DataNascimento" placeholder="21/07/1993" id="nascimento" class="form-control nome-validate" />
+                        <input type="text" name="nascimento" ng-model="Cliente.DataNascimento" placeholder="21/07/1993" id="nascimento" class="form-control nascimento-validate" />
+                        <div class="nascimento input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">CEP</span>
-                        <input type="number" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control" />
+                        <input type="number" name="cep" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control cep-validate" />
+                        <div class="cep input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Endereço</span>
-                        <input type="text" name="descricao" ng-model="Cliente.Endereco" id="rua" class="form-control money" placeholder="99,90" value="0,00" />
+                        <input type="text" name="endereco" ng-model="Cliente.Endereco" id="rua" class="form-control endereco-validate" placeholder="99,90" value="0,00" />
+                        <div class="endereco input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -63,20 +70,23 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Bairro</span>
-                        <input type="text" ng-model="Cliente.Bairro" placeholder="Socorro" id="bairro" class="form-control" />
+                        <input type="text" name="bairro" ng-model="Cliente.Bairro" placeholder="Socorro" id="bairro" class="form-control bairro-validate" />
+                        <div class="bairro input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Cidade</span>
-                        <input type="text" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" id="cidade" class="form-control" />
+                        <input type="text" name="cidade" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" id="cidade" class="form-control cidade-validate" />
+                        <div class="cidade input-group-addon campo-erro" style="display:none;"></div>
                         <input type="hidden" id="ibge" value="" ng-model="Pessoa.Municipio.Id" />
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">UF</span>
-                        <input type="text" ng-model="Cliente.Uf" placeholder="PE" id="uf" class="form-control" />
+                        <input type="text" name="uf" ng-model="Cliente.Uf" placeholder="PE" id="uf" class="form-control uf-validate" />
+                        <div class="uf input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-1">

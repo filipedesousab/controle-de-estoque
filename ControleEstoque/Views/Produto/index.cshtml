@@ -17,27 +17,30 @@
                 <div class="col-md-6">
                     <div class="input-group">
                         <span class="input-group-addon">Descrição</span>
-                        <input type="text" name="descricao" ng-model="Produto.Descricao" value="" placeholder="Produto X" class="form-control nome-validate" />
+                        <input type="text" name="descricao" ng-model="Produto.Descricao" value="" placeholder="Produto X" class="form-control descricao-validate" />
+                        <div class="descricao input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Quantidade</span>
-                        <input type="number" name="quantidade" ng-model="Produto.QuantidadeEstoque" value="" placeholder="99" class="form-control" />
+                        <input type="number" name="quantidade" ng-model="Produto.QuantidadeEstoque" value="" placeholder="99" class="form-control quantidade-validate" />
+                        <div class="quantidade input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Preço R$</span>
-                        <input type="text" name="descricao" ng-model="Produto.PrecoVenda" id="money" class="form-control money" placeholder="99,90" value="0,00" />
+                        <input type="text" name="dinheiro" ng-model="Produto.PrecoVenda" id="dinheiro" class="form-control dinheiro-validate" placeholder="99,90" value="0,00" />
+                        <div class="dinheiro input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Fornecedor</span>
-                        <select ng-model="Produto.Fornecedor.Id" class="form-control">
+                        <select ng-model="Produto.Fornecedor.Id" class="form-control fornecedor-validate">
                             <option value="2">Sony</option>
                             <option value="2">LG</option>
                             <option value="2">Samsung</option>
