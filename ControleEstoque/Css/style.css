@@ -67,6 +67,10 @@ i.fa.fa-times-circle:hover, i.fa.fa-close:hover{
     color:#7c2323;
 }
 
+.row{
+    margin: 10px;
+}
+
 /*Login Signup Page*/
 a:focus,a:hover,a{
     outline:none;

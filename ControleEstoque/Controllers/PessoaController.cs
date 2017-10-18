@@ -13,23 +13,30 @@ namespace ControleEstoque.Controllers
         [HttpPost]
         public string Adicionar(Pessoa pessoa)
         {
-            PessoaDal pessoaDal = new PessoaDal();
-
-            if (!pessoaDal.VerificarSeExisteEmail(pessoa))
+            try
             {
-                bool result = pessoaDal.Adicionar(pessoa); // Chama o método Salvar e guarda o resultado na variavel result
-                if (result)
+                PessoaDal pessoaDal = new PessoaDal();
+
+                if (!pessoaDal.VerificarSeExisteEmail(pessoa))
                 {
-                    return "0"; // Sucesso
+                    bool result = pessoaDal.Adicionar(pessoa); // Chama o método Salvar e guarda o resultado na variavel result
+                    if (result)
+                    {
+                        return "0"; // Sucesso
+                    }
+                    else
+                    {
+                        return "-1"; // Erro
+                    }
                 }
                 else
                 {
-                    return "-1"; // Erro
+                    return "-2"; // Já existe
                 }
             }
-            else
+            catch
             {
-                return "-2"; // Já existe
+                return "-1"; // Erro
             }
         }
 
