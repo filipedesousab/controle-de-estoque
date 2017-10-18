@@ -33,5 +33,41 @@ app.controller('FornecedorController', function ($scope, $http) {
                 console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
             });
     };
-    
+
+     $scope.search = function(userValue) {
+        $http.get("/Fornecedor/ListarFornecedoresAtivos")
+          .success(function (response) {
+
+              $scope.Fornecedores = response; // JSON
+
+              $scope.totalItems = $scope.Fornecedores.length;
+              $scope.viewby = 10;
+              $scope.currentPage = 1;
+              $scope.itemsPerPage = $scope.viewby;
+              $scope.maxSize = 5; // Number of pager buttons to show
+
+              $scope.setPage = function (pageNo) {
+                  $scope.currentPage = pageNo;
+              };
+
+              $scope.setItemsPerPage = function (num) {
+                  $scope.itemsPerPage = num;
+                  $scope.currentPage = 1;
+              }
+
+              if ($scope.Fornecedores.length == 0) {
+                  $scope.noResult = "Sua Pesquisa não obteve resultados.";
+                  $("#no-result").css("display", "block");
+              } else {
+                  $("#no-result").css("display", "none");
+              }
+
+          }).error(function (data, status, headers, config) {
+              console.log(status);
+          });
+     }
+
+     $(document).ready(function () {
+         $scope.search();
+     });
 });

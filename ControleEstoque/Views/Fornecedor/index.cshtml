@@ -84,23 +84,37 @@
             </div>
         </div>
     </form>
-    <table class="table lista">
-        <thead class="thead">
-            <tr>
-                <th>Nome</th>
-                <th>CNPJ</th>
-                <th>Endereço</th>
-                <th>Ação</th>
-            </tr>
-        </thead>
-        <tbody class="tbody">
-            <tr ng-repeat="Fornecedor in Fornecedores">
-                <td>{{Fornecedor.Nome}}</td>
-                <td>{{Fornecedor.Documento}}</td>
-                <td>{{Fornecedor.Endereco}}</td>
-                <td>{{Fornecedor.Acao}}</td>
-            </tr>
-        </tbody>
-    </table>
+
+    <!-- Table Area-->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Endereço</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="f in (Fornecedores | orderBy:'Nome':true).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" class="text-center">
+                    <td>{{f.Nome}}</td>
+                    <td>{{f.Documento}}</td>
+                    <td>{{f.Endereco}}</td>
+                    <td><span ng-click="selecionarFornecedor(f.Id)" class="glyphicon glyphicon-pencil action-icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Editar Fornecedor"></span></td>
+                </tr>
+            </tbody>
+        </table>
+        <span id="no-result">Sua pesquisa não obteve resultados</span>
+    </div>
+
+    <br />
+
+    <div class="col-lg-12 text-center">
+        <nav>
+            <uib-pagination total-items="totalItems" max-size="10" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></uib-pagination>
+        </nav>
+    </div>
+
 </div>
 

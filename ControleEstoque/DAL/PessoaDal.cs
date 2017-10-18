@@ -176,13 +176,13 @@ namespace ControleEstoque.DAL
                 if (pessoaFiltro.DataNascimento != DateTime.MinValue)
                     sql.AppendLine(" AND pes_data_nascimento = @DataNascimento");
 
-                if (!string.IsNullOrWhiteSpace(pessoaFiltro.PerfilCliente.ToString()))
+                if (!pessoaFiltro.PerfilCliente.Equals('\0'))
                     sql.AppendLine(" AND pes_perfil_cliente = @PerfilCliente");
 
-                if (!string.IsNullOrWhiteSpace(pessoaFiltro.PerfilVendedor.ToString()))
+                if (!pessoaFiltro.PerfilVendedor.Equals('\0'))
                     sql.AppendLine(" AND pes_perfil_vendedor = @PerfilVendedor");
 
-                if (!string.IsNullOrWhiteSpace(pessoaFiltro.PerfilFornecedor.ToString()))
+                if (!pessoaFiltro.PerfilCliente.Equals('\0'))
                     sql.AppendLine(" AND pes_perfil_fornecedor = @PerfilFornecedor");
 
                 if (!string.IsNullOrWhiteSpace(pessoaFiltro.Documento))
@@ -242,7 +242,7 @@ namespace ControleEstoque.DAL
                         Pessoa pessoa = new Pessoa();
                         pessoa.Id = (int)dados["pes_id"];
                         pessoa.Nome = dados["pes_nome"].ToString();
-                        pessoa.DataNascimento = Convert.ToDateTime(dados["pes_nome"]);
+                        pessoa.DataNascimento = Convert.ToDateTime(dados["pes_data_nascimento"]);
                         pessoa.PerfilCliente = Convert.ToChar(dados["pes_perfil_cliente"]);
                         pessoa.PerfilVendedor = Convert.ToChar(dados["pes_perfil_vendedor"]);
                         pessoa.PerfilFornecedor = Convert.ToChar(dados["pes_perfil_fornecedor"]);

@@ -282,6 +282,9 @@ li,ul{
     float: none;
     height: 100%;
 }
+.table tr{
+    background-color: #fff;
+}
 
 .v-align {
     vertical-align: top;
