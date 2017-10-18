@@ -1,18 +1,18 @@
-Ôªøvar app = angular.module("App", ['ui.bootstrap']);
+var app = angular.module("App", ['ui.bootstrap']);
 
-app.controller('FornecedorController', function ($scope, $http) {
+app.controller('ClienteController', function ($scope, $http) {
 
-    $scope.adicionarFornecedor = function () {
+    $scope.adicionarCliente = function () {
 
         $scope.Pessoa.Endereco = document.getElementById('rua').value;
         $scope.Pessoa.Bairro = document.getElementById('bairro').value;
         $scope.Pessoa.Municipio = { Id: document.getElementById('ibge').value, Nome: document.getElementById('cidade').value }
-        $scope.Pessoa.TipoDocumento = "CNPJ";
-        $scope.Pessoa.PerfilFornecedor = "S";
-        $scope.Pessoa.PerfilCliente = "N";
+        $scope.Pessoa.TipoDocumento = "CPF";
+        $scope.Pessoa.PerfilFornecedor = "N";
+        $scope.Pessoa.PerfilCliente = "S";
         $scope.Pessoa.PerfilVendedor = "N";
         $scope.Pessoa.Status = "A";
-
+        console.log($scope.Pessoa);
         $http({
             url: '/Pessoa/Adicionar',
             method: 'POST',
@@ -23,51 +23,51 @@ app.controller('FornecedorController', function ($scope, $http) {
                 if (data == "-1")
                     msgAlerta = "Erro no cadastro";
                 else if (data == "-2")
-                    msgAlerta = "J√° existe uma pessoa cadastrada com esse e-mail.";
+                    msgAlerta = "J· existe uma pessoa cadastrada com esse e-mail.";
                 else
                     msgAlerta = "Cadastrado com sucesso";
                 alert(msgAlerta);
             })
             .error(function (data, status, headers, config) {
-                // Lan√ßa o erro no console do navegador caso ocorra
+                // LanÁa o erro no console do navegador caso ocorra
                 console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
             });
     };
 
-    $scope.search = function(userValue) {
-        $http.get("/Fornecedor/ListarFornecedoresAtivos")
-        .success(function (response) {
+    $scope.search = function (userValue) {
+        $http.get("/Cliente/ListarClientesAtivos")
+            .success(function (response) {
 
-              $scope.Fornecedores = response; // JSON
+                $scope.Fornecedores = response; // JSON
 
-              $scope.totalItems = $scope.Fornecedores.length;
-              $scope.viewby = 10;
-              $scope.currentPage = 1;
-              $scope.itemsPerPage = $scope.viewby;
-              $scope.maxSize = 5; // Number of pager buttons to show
+                $scope.totalItems = $scope.Fornecedores.length;
+                $scope.viewby = 10;
+                $scope.currentPage = 1;
+                $scope.itemsPerPage = $scope.viewby;
+                $scope.maxSize = 5; // Number of pager buttons to show
 
-              $scope.setPage = function (pageNo) {
-                  $scope.currentPage = pageNo;
-              };
+                $scope.setPage = function (pageNo) {
+                    $scope.currentPage = pageNo;
+                };
 
-              $scope.setItemsPerPage = function (num) {
-                  $scope.itemsPerPage = num;
-                  $scope.currentPage = 1;
-              }
+                $scope.setItemsPerPage = function (num) {
+                    $scope.itemsPerPage = num;
+                    $scope.currentPage = 1;
+                }
 
-              if ($scope.Fornecedores.length == 0) {
-                  $scope.noResult = "Sua Pesquisa n√£o obteve resultados.";
-                  $("#no-result").css("display", "block");
-              } else {
-                  $("#no-result").css("display", "none");
-              }
+                if ($scope.Fornecedores.length == 0) {
+                    $scope.noResult = "Sua Pesquisa n„o obteve resultados.";
+                    $("#no-result").css("display", "block");
+                } else {
+                    $("#no-result").css("display", "none");
+                }
 
-        }).error(function (data, status, headers, config) {
-              console.log(status);
-        });
+            }).error(function (data, status, headers, config) {
+                console.log(status);
+            });
     }
 
-    $scope.selecionarFornecedor = function (id) {
+    $scope.selecionarCliente = function (id) {
         $http({
             url: '/Pessoa/ObterRegistro',
             method: 'POST',
@@ -79,23 +79,23 @@ app.controller('FornecedorController', function ($scope, $http) {
                 console.log(data);
             })
             .error(function (data, status, headers, config) {
-                // Lan√ßa o erro no console do navegador caso ocorra
+                // LanÁa o erro no console do navegador caso ocorra
                 console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
             });
     }
 
-    $scope.removerFornecedor = function (id) {
+    $scope.removerCliente = function (id) {
         $http({
             url: '/Pessoa/Deletar',
             method: 'POST',
             data: { idPessoa: id }
         })
             .success(function (data, status, headers, config) {
-                var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Fornecedor removido com sucesso";
+                var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Cliente removido com sucesso";
                 alert(msgAlerta);
             })
             .error(function (data, status, headers, config) {
-                // Lan√ßa o erro no console do navegador caso ocorra
+                // LanÁa o erro no console do navegador caso ocorra
                 console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
             });
     }

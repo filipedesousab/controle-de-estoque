@@ -4,7 +4,7 @@
 }
 
 
-<div id="home" ng-controller="FornecedorController">
+<div ng-controller="FornecedorController" class="conteudo-dashboard">
     <form name="myForm" ng-submit="adicionarFornecedor()" novalidate>
         <div class="form-add-edit">
             <div class="row">
@@ -101,7 +101,11 @@
                     <td>{{f.Nome}}</td>
                     <td>{{f.Documento}}</td>
                     <td>{{f.Endereco}}</td>
-                    <td><span ng-click="selecionarFornecedor(f.Id)" class="glyphicon glyphicon-pencil action-icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Editar Fornecedor"></span></td>
+                    <!--<td><span ng-click="selecionarFornecedor(f.Id)" class="glyphicon glyphicon-pencil action-icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Editar Fornecedor"></span></td>-->
+                    <td>
+                        <a href="#" ng-click="selecionarFornecedor(f.Id)"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="removerFornecedor(f.Id)"><i class="fa fa-close" aria-hidden="true"></i></a>
+                    </td>
                 </tr>
             </tbody>
         </table>

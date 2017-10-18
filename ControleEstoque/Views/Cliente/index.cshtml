@@ -1,96 +1,125 @@
 ﻿@{
     ViewBag.Title = "CCO Eletro - Clientes";
+    ViewData["JsLink"] = "/Scripts/Views/cliente.js";
 }
 
-<form action="#" method="post" id="form-novo" class="form">
-    <div class="form-add-edit">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Nome</span>
-                    <input type="text" ng-model="Cliente.Nome" placeholder="Nome do produto" class="form-control nome-validate" />
-                    <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+<div ng-controller="ClienteController" class="conteudo-dashboard">
+    <form action="#" method="post" id="form-novo" ng-submit="adicionarCliente()" class="form">
+        <div class="form-add-edit">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nome</span>
+                        <input type="text" ng-model="Pessoa.Nome" placeholder="Nome do Cliente" id="nome" class="form-control nome-validate" />
+                        <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Email</span>
+                        <input type="text" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control nome-validate" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">DDD</span>
+                        <input type="text" ng-model="Pessoa.Ddd" placeholder="81" id="ddd" class="form-control nome-validate" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">Fone</span>
+                        <input type="text" ng-model="Pessoa.Telefone" placeholder="3033-2022" id="telefone" class="form-control nome-validate" />
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Email</span>
-                    <input type="text" ng-model="Cliente.Email" placeholder="fornecedor@fornecedor.com" class="form-control nome-validate" />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">CPF</span>
+                        <input type="number" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nascimento</span>
+                        <input type="text" ng-model="Cliente.DataNascimento" placeholder="21/07/1993" id="nascimento" class="form-control nome-validate" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">CEP</span>
+                        <input type="number" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Endereço</span>
+                        <input type="text" name="descricao" ng-model="Cliente.Endereco" id="rua" class="form-control money" placeholder="99,90" value="0,00" />
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="input-group">
-                    <span class="input-group-addon">DDD</span>
-                    <input type="text" ng-model="Cliente.DDD" placeholder="81" class="form-control nome-validate" />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Bairro</span>
+                        <input type="text" ng-model="Cliente.Bairro" placeholder="Socorro" id="bairro" class="form-control" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="input-group">
-                    <span class="input-group-addon">Fone</span>
-                    <input type="text" ng-model="Cliente.Telefone" placeholder="3033-2022" class="form-control nome-validate" />
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Cidade</span>
+                        <input type="text" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" id="cidade" class="form-control" />
+                        <input type="hidden" id="ibge" value="" ng-model="Pessoa.Municipio.Id" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <span class="input-group-addon">UF</span>
+                        <input type="text" ng-model="Cliente.Uf" placeholder="PE" id="uf" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="input-group">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">CPF</span>
-                    <input type="number" ng-model="Cliente.CPF" placeholder="09284003440" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Nascimento</span>
-                    <input type="text" ng-model="Cliente.Nascimento" placeholder="21/07/1993" class="form-control nome-validate" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Endereço</span>
-                    <input type="text" name="descricao" ng-model="Cliente.Endereco" id="money" class="form-control money" placeholder="99,90" value="0,00" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Bairro</span>
-                    <input type="number" ng-model="Cliente.Bairro" placeholder="Socorro" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="input-group">
-                    <span class="input-group-addon">Cidade</span>
-                    <input type="number" ng-model="Cliente.Cidade" placeholder="Jaboatão" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="input-group">
-                    <span class="input-group-addon">UF</span>
-                    <input type="number" ng-model="Cliente.Uf" placeholder="PE" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
-            </div>
-        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table lista table-bordered">
+            <thead class="thead">
+                <tr>
+                    <td>Nome</td>
+                    <td>Nascimento</td>
+                    <td>Documento</td>
+                    <td>Ação</td>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr ng-repeat="c in (Clientes | orderBy:'Nome':true).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" class="text-center">
+                    <td>{{c.Nome}}</td>
+                    <td>{{c.Documento}}</td>
+                    <td>{{c.Endereco}}, {{c.Bairro}}, {{c.Municipio}}</td>
+                    <!--<td><span ng-click="selecionarCliente(c.Id)" class="glyphicon glyphicon-pencil action-icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Editar Fornecedor"></span></td>-->
+                    <td>
+                        <a href="#" ng-click="selecionarCliente(c.Id)"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="removerCliente(c.Id)"><i class="fa fa-close" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span id="no-result">Sua pesquisa não obteve resultados</span>
     </div>
-</form>
-<table class="table lista">
-    <thead class="thead">
-        <tr>
-            <td>Nome</td>
-            <td>Nascimento</td>
-            <td>Documento</td>
-            <td>Ação</td>
-        </tr>
-    </thead>
-    <tbody class="tbody">
-        <tr ng-repeat="Cliente in Clientes">
-            <td>{{Cliente.Nome}}</td>
-            <td>{{Cliente.Documento}}</td>
-            <td>{{Cliente.Endereco}}</td>
-            <td>{{Cliente.Acao}}</td>
-        </tr>
-    </tbody>
-</table>
+
+    <br />
+
+    <div class="col-lg-12 text-center">
+        <nav>
+            <uib-pagination total-items="totalItems" max-size="10" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></uib-pagination>
+        </nav>
+    </div>
+</div>
