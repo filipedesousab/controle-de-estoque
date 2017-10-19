@@ -75,8 +75,7 @@ app.controller('FornecedorController', function ($scope, $http) {
             data: { idPessoa: id }
         })
             .success(function (data, status, headers, config) {
-                //var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Fornecedor removido com sucesso";
-                //alert(msgAlerta);
+                $scope.Pessoa = data;
                 console.log(data);
             })
             .error(function (data, status, headers, config) {

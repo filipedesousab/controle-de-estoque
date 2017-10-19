@@ -24,7 +24,7 @@
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">DDD</span>
-                        <input type="text" ng-model="Pessoa.Ddd" placeholder="81" class="form-control nome-validate" required />
+                        <input type="text" ng-model="Pessoa.Ddd" placeholder="81" class="form-control nome-validate" required drt-numerico />
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -38,13 +38,13 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CNPJ</span>
-                        <input type="text" ng-model="Pessoa.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" />
+                        <input type="text" ng-model="Pessoa.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" drt-numerico />
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CEP</span>
-                        <input type="number" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control" />
+                        <input type="text" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control" drt-numerico />
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -71,7 +71,7 @@
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">UF</span>
-                        <input type="text" id="uf" ng-model="Pessoa.Uf" placeholder="PE" class="form-control" />
+                        <input type="text" id="uf" ng-model="Pessoa.Municipio.Estado.Uf" placeholder="PE" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">

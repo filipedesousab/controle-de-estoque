@@ -1,6 +1,6 @@
 var app = angular.module("App", ['ui.bootstrap']);
 
-app.controller('ClienteController', function ($scope, $http) {
+app.controller('ClienteController', function ($scope, $http, $filter) {
 
     $scope.adicionarCliente = function () {
 
@@ -74,8 +74,9 @@ app.controller('ClienteController', function ($scope, $http) {
             data: { idPessoa: id }
         })
             .success(function (data, status, headers, config) {
-                //var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Fornecedor removido com sucesso";
-                //alert(msgAlerta);
+                $scope.Pessoa = data;
+                //$scope.Pessoa.DataNascimento = $filter('date')($scope.Pessoa.DataNascimento, "dd/MM/yyyy");
+                //$scope.Pessoa.DataNascimento = Date.parse($scope.Pessoa.DataNascimento);
                 console.log(data);
             })
             .error(function (data, status, headers, config) {

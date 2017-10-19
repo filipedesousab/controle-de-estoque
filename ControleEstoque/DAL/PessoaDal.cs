@@ -256,6 +256,7 @@ namespace ControleEstoque.DAL
                         pessoa.Cep = dados["pes_cep"].ToString();
                         pessoa.Municipio.Id = (int)dados["mun_id"];
                         pessoa.Municipio.Nome = dados["mun_nome"].ToString();
+                        pessoa.Municipio.Estado.Uf = dados["est_uf"].ToString();
                         pessoa.DataCadastro = Convert.ToDateTime(dados["pes_data_cad"]);
                         pessoa.DataAtualizacao = Convert.ToDateTime(dados["pes_data_atualizacao"]);
                         pessoa.Status = Convert.ToChar(dados["pes_status"]);
@@ -287,7 +288,7 @@ namespace ControleEstoque.DAL
             try
             {
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = @"SELECT * FROM tb_pessoa WHERE pes_id = @Id"; // SQL
+                cmd.CommandText = @"SELECT * FROM tb_pessoa INNER JOIN tb_municipio ON tb_pessoa.mun_id = tb_municipio.mun_id WHERE pes_id = @Id"; // SQL
                 cmd.Parameters.AddWithValue("@Id", idPessoa);
                 MySqlDataReader dados = cmd.ExecuteReader(); // Aguarda o resltado em um data Reader
 
@@ -310,6 +311,8 @@ namespace ControleEstoque.DAL
                     pessoa.Bairro = dados["pes_bairro"].ToString();
                     pessoa.Cep = dados["pes_cep"].ToString();
                     pessoa.Municipio.Id = (int)dados["mun_id"];
+                    pessoa.Municipio.Nome = dados["mun_nome"].ToString();
+                    pessoa.Municipio.Estado.Uf = dados["est_uf"].ToString();
                     pessoa.DataCadastro = Convert.ToDateTime(dados["pes_data_cad"]);
                     pessoa.DataAtualizacao = Convert.ToDateTime(dados["pes_data_atualizacao"]);
                     pessoa.Status = Convert.ToChar(dados["pes_status"]);
