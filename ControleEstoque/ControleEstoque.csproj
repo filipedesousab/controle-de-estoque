@@ -225,6 +225,7 @@
     <Content Include="Lib\Font-awesome\HELP-US-OUT.txt" />
     <Content Include="Lib\JQuery\jquery-3.1.1.min.js" />
     <Content Include="Lib\Ui-bootstrap\ui-bootstrap-tpls-0.14.3.min.js" />
+    <Content Include="Lib\Validations\validations.js" />
     <Content Include="ProjetoAntigo\css\style.css" />
     <Content Include="ProjetoAntigo\img\logo.png" />
     <Content Include="ProjetoAntigo\index.html" />
@@ -270,8 +271,10 @@
     <Content Include="Lib\Font-awesome\scss\_screen-reader.scss" />
     <Content Include="Lib\Font-awesome\scss\_stacked.scss" />
     <Content Include="Lib\Font-awesome\scss\_variables.scss" />
+    <Content Include="Scripts\Views\cliente.js" />
     <Content Include="Scripts\Views\fornecedor.js" />
     <Content Include="Scripts\Views\home.js" />
+    <Content Include="Scripts\Views\produto.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
