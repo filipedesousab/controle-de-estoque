@@ -18,19 +18,22 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Email</span>
-                        <input type="text" ng-model="Pessoa.Email" placeholder="fornecedor@fornecedor.com" class="form-control nome-validate" required />
+                        <input type="email" name="email" ng-model="Pessoa.Email" placeholder="fornecedor@fornecedor.com" class="form-control email-validate" required />
+                        <div class="email input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">DDD</span>
-                        <input type="text" ng-model="Pessoa.Ddd" placeholder="81" class="form-control nome-validate" required drt-numerico />
+                        <input type="number" name="ddd" ng-model="Pessoa.Ddd" placeholder="81" class="form-control ddd-validate" required drt-numerico />
+                        <div class="ddd input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">Fone</span>
-                        <input type="text" ng-model="Pessoa.Telefone" placeholder="3033-2022" class="form-control nome-validate" required />
+                        <input type="number" name="telefone" ng-model="Pessoa.Telefone" placeholder="3033-2022" class="form-control telefone-validate" required />
+                        <div class="telefone input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -38,25 +41,29 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CNPJ</span>
-                        <input type="text" ng-model="Pessoa.Documento" placeholder="72.356.373/0001-00" class="form-control nome-validate" drt-numerico />
+                        <input type="number" name="documento" ng-model="Pessoa.Documento" placeholder="72.356.373/0001-00" class="form-control documento-validate" drt-numerico />
+                        <div class="documento input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CEP</span>
-                        <input type="text" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control" drt-numerico />
+                        <input type="number" name="cep" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="cep-control cep-validate" drt-numerico />
+                        <div class="cep input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Endereço</span>
-                        <input type="text" id="rua" ng-model="Pessoa.Endereco" placeholder="Rua R, 555" class="form-control" />
+                        <input type="text" name="endereco" id="rua" ng-model="Pessoa.Endereco" placeholder="Rua R, 555" class="form-control endereco-validate" />
+                        <div class="endereco input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Bairro</span>
-                        <input type="text" id="bairro" ng-model="Pessoa.Bairro" placeholder="Socorro" class="form-control" />
+                        <input type="text" name="bairro" id="bairro" ng-model="Pessoa.Bairro" placeholder="Socorro" class="form-control bairro-validate" />
+                        <div class="bairro input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -64,14 +71,16 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Cidade</span>
-                        <input type="text" id="cidade" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" class="form-control" />
+                        <input type="text" name="cidade" id="cidade" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" class="form-control cidade-validate" />
                         <input type="hidden" id="ibge" value="" ng-model="Pessoa.Municipio.Id" />
+                        <div class="cidade input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">UF</span>
-                        <input type="text" id="uf" ng-model="Pessoa.Municipio.Estado.Uf" placeholder="PE" class="form-control" />
+                        <input type="text" name="uf" id="uf" ng-model="Pessoa.Municipio.Estado.Uf" placeholder="PE" class="form-control uf-validate" />
+                        <div class="uf input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-4">
