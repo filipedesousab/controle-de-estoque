@@ -1,63 +1,92 @@
 ﻿@{
     ViewBag.Title = "CCO Eletro - Produtos";
+    ViewData["JsLink"] = "/Scripts/Views/produto.js";
 }
 
-<form action="#" method="post" id="form-novo" class="form">
-    <div class="form-add-edit">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon">Nome</span>
-                    <input type="text" name="nome" ng-model="Produto.Nome" placeholder="Nome do produto" class="form-control nome-validate" />
-                    <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+<div ng-controller="ProdutoController" class="conteudo-dashboard">
+    <form action="#" method="post" id="form-novo" class="form" ng-submit="adicionarProduto()" novalidate>
+        <div class="form-add-edit">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nome</span>
+                        <input type="text" name="nome" ng-model="Produto.Nome" placeholder="Nome do Produto" class="form-control nome-validate" />
+                        <div class="nome input-group-addon campo-erro" style="display:none;"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Descrição</span>
+                        <input type="text" name="descricao" ng-model="Produto.Descricao" value="" placeholder="Produto X" class="form-control descricao-validate" />
+                        <div class="descricao input-group-addon campo-erro" style="display:none;"></div>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <span class="input-group-addon">Descrição</span>
-                    <input type="text" name="descricao" ng-model="Produto.Descricao" value="" placeholder="Produto X" class="form-control nome-validate" />
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Quantidade</span>
+                        <input type="number" name="quantidade" ng-model="Produto.QuantidadeEstoque" value="" placeholder="99" class="form-control quantidade-validate" />
+                        <div class="quantidade input-group-addon campo-erro" style="display:none;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Preço R$</span>
+                        <input type="text" name="dinheiro" ng-model="Produto.PrecoVenda" id="dinheiro" class="form-control dinheiro-mascara preco-validate" placeholder="99,90" value="0,00" />
+                        <div class="preco dinheiro input-group-addon campo-erro" style="display:none;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Fornecedor</span>
+                        <select ng-model="Produto.Fornecedor.Id" class="form-control fornecedor-validate">
+                            <option value="2">Sony</option>
+                            <option value="2">LG</option>
+                            <option value="2">Samsung</option>
+                            <option value="2">Motorola</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Quantidade</span>
-                    <input type="number" name="quantidade" ng-model="Produto.Quantidade" value="" placeholder="99" class="form-control" />
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon">Preço R$</span>
-                    <input type="text" name="descricao" ng-model="Produto.Preco" id="money" class="form-control money" placeholder="99,90" value="0,00" />
-                </div>
-            </div>
-            <div class="col-md-1">
-                <div class="input-group">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
-            </div>
-        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table lista table-bordered">
+            <thead class="thead">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr ng-repeat="p in (Produtos | orderBy:'Nome':true).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" class="text-center">
+                    <td>{{p.Nome}}</td>
+                    <td>{{p.Descricao}}</td>
+                    <td>{{p.QuantidadeEstoque}}</td>
+                    <td>{{p.PrecoVenda}}</td>
+                    <!--<td><span ng-click="selecionarProduto(p.Id)" class="glyphicon glyphicon-pencil action-icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Editar Fornecedor"></span></td>-->
+                    <td>
+                        <a href="#" ng-click="selecionarProduto(p.Id)"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                        <a href="#" ng-click="removerProduto(p.Id)"><i class="fa fa-close" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <span id="no-result">Sua pesquisa não obteve resultados</span>
     </div>
-</form>
-<table class="table lista">
-    <thead class="thead">
-        <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Preço</th>
-            <th>Ação</th>
-        </tr>
-    </thead>
-    <tbody class="tbody">
-        <tr ng-repeat="Produto in Produtos">
-            <td>{{Produto.Nome}}</td>
-            <td>{{Produto.Documento}}</td>
-            <td>{{Produto.Endereco}}</td>
-            <td>{{Produto.Acao}}</td>
-        </tr>
-    </tbody>
-</table>
+
+    <br />
+
+    <div class="col-lg-12 text-center">
+        <nav>
+            <uib-pagination total-items="totalItems" max-size="10" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></uib-pagination>
+        </nav>
+    </div>
+</div>

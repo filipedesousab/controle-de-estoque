@@ -1,4 +1,12 @@
-/*Main CSS*/
+﻿/*Main CSS*/
+
+.form-add-edit .row {
+    padding-bottom: 5px;
+}
+.form-add-edit {
+    padding: 10px;
+}
+
 i.fa.ico-home {
     font-size: 30px;
 }
@@ -17,9 +25,10 @@ thead{
     border-style: solid;
     border-color: #e6e6e6;
 }
-.produtos-dashboard{
+.conteudo-dashboard{
     background-color: #fff;
     margin: 20px 0px 0px 0px;
+    height: 100%;
 }
 .titulo-dash {
     font-size: 20px;
@@ -60,6 +69,9 @@ li.btn-dash{
 .vermelho{
     background-color: #b73333;
 }
+i.fa {
+    font-size: 25px;
+}
 i.fa.fa-times-circle, i.fa.fa-close{
     color:#de5353;
 }
@@ -71,6 +83,9 @@ i.fa.fa-times-circle:hover, i.fa.fa-close:hover{
     margin: 10px;
 }
 
+.conteudo{
+    background-color: #132856;
+}
 /*Login Signup Page*/
 a:focus,a:hover,a{
     outline:none;
