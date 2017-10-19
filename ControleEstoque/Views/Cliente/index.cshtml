@@ -17,21 +17,21 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Email</span>
-                        <input type="email" name="email" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control email-validate" />
+                        <input type="text" name="email" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control email-validate" />
                         <div class="email input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">DDD</span>
-                        <input type="number" name="ddd" ng-model="Pessoa.Ddd" placeholder="81" id="ddd" class="form-control ddd-validate" />
+                        <input type="text" name="ddd" ng-model="Pessoa.Ddd" placeholder="81" id="ddd" class="form-control ddd-validate" drt-numerico />
                         <div class="ddd input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">Fone</span>
-                        <input type="number" name="telefone" ng-model="Pessoa.Telefone" placeholder="3033-2022" id="telefone" class="form-control telefone-validate" />
+                        <input type="text" name="telefone" ng-model="Pessoa.Telefone" placeholder="3033-2022" id="telefone" class="form-control telefone-validate" drt-numerico />
                         <div class="telefone input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
@@ -40,14 +40,14 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">CPF</span>
-                        <input type="number" name="documento" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control documento-validate" />
+                        <input type="text" name="documento" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control documento-validate" drt-numerico />
                         <div class="documento input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">CEP</span>
-                        <input type="number" name="cep" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control cep-validate" />
+                        <input type="text" name="cep" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control cep-validate" drt-numerico />
                         <div class="cep input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
@@ -83,7 +83,17 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
+                    <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
                 </div>
             </div>
         </div>

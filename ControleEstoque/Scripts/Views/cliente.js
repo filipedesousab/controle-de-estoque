@@ -6,32 +6,61 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
 
         $scope.Pessoa.Endereco = document.getElementById('rua').value;
         $scope.Pessoa.Bairro = document.getElementById('bairro').value;
-        $scope.Pessoa.Municipio = { Id: document.getElementById('ibge').value, Nome: document.getElementById('cidade').value }
         $scope.Pessoa.TipoDocumento = "CPF";
         $scope.Pessoa.PerfilFornecedor = "N";
         $scope.Pessoa.PerfilCliente = "S";
         $scope.Pessoa.PerfilVendedor = "N";
         $scope.Pessoa.Status = "A";
         console.log($scope.Pessoa);
-        $http({
-            url: '/Pessoa/Adicionar',
-            method: 'POST',
-            data: { pessoa: $scope.Pessoa }
-        })
-            .success(function (data, status, headers, config) {
-                var msgAlerta = "";
-                if (data == "-1")
-                    msgAlerta = "Erro no cadastro";
-                else if (data == "-2")
-                    msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
-                else
-                    msgAlerta = "Cadastrado com sucesso";
-                alert(msgAlerta);
+        
+        if ($scope.OpSalvar) {
+
+            $scope.Pessoa.Municipio = { Id: document.getElementById('ibge').value, Nome: document.getElementById('cidade').value }
+            $http({
+                url: '/Pessoa/Adicionar',
+                method: 'POST',
+                data: { pessoa: $scope.Pessoa }
             })
-            .error(function (data, status, headers, config) {
-                // Lança o erro no console do navegador caso ocorra
-                console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
-            });
+                .success(function (data, status, headers, config) {
+                    var msgAlerta = "";
+                    if (data == "-1")
+                        msgAlerta = "Erro no cadastro";
+                    else if (data == "-2")
+                        msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
+                    else
+                        msgAlerta = "Cadastrado com sucesso";
+                    alert(msgAlerta);
+                    $scope.search();
+                })
+                .error(function (data, status, headers, config) {
+                    // Lança o erro no console do navegador caso ocorra
+                    console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
+                });
+
+        } else {
+            $http({
+                url: '/Pessoa/Alterar',
+                method: 'POST',
+                data: { pessoa: $scope.Pessoa }
+            })
+                .success(function (data, status, headers, config) {
+                    var msgAlerta = "";
+                    if (data == "-1")
+                        msgAlerta = "Erro no cadastro";
+                    else if (data == "-2")
+                        msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
+                    else
+                        msgAlerta = "Alterado com sucesso";
+                    alert(msgAlerta);
+                    $scope.Pessoa = [];
+                    $scope.OpSalvar = true;
+                    $scope.search();
+                })
+                .error(function (data, status, headers, config) {
+                    // Lança o erro no console do navegador caso ocorra
+                    console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
+                });
+        }
     };
 
     $scope.search = function (userValue) {
@@ -68,6 +97,7 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
     }
 
     $scope.selecionarCliente = function (id) {
+        $scope.OpSalvar = false;
         $http({
             url: '/Pessoa/ObterRegistro',
             method: 'POST',
@@ -101,7 +131,13 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
             });
     }
 
+    $scope.cancelarAlteracao = function () {
+        $scope.Pessoa = [];
+        $scope.OpSalvar = true;
+    }
+
     $(document).ready(function () {
+        $scope.OpSalvar = true;
         $scope.search();
     });
 });
