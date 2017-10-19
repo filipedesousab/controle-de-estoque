@@ -113,7 +113,7 @@
                 <tr ng-repeat="c in (Clientes | orderBy:'Nome':true).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" class="text-center">
                     <td>{{c.Nome}}</td>
                     <td>{{c.Documento}}</td>
-                    <td>{{c.Endereco}}, {{c.Bairro}}, {{c.Municipio}}</td>
+                    <td>{{c.Endereco}}, {{c.Bairro}}, {{c.Municipio.Nome}}</td>
                     <!--<td><span ng-click="selecionarCliente(c.Id)" class="glyphicon glyphicon-pencil action-icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Editar Fornecedor"></span></td>-->
                     <td>
                         <a href="#" ng-click="selecionarCliente(c.Id)"><i class="fa fa-edit" aria-hidden="true"></i></a>

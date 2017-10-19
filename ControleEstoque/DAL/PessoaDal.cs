@@ -168,7 +168,7 @@ namespace ControleEstoque.DAL
             {
                 List<Pessoa> pessoas = new List<Pessoa>(); // Cria uma lista de objetos
                 StringBuilder sql = new StringBuilder();
-                sql.AppendLine(@"SELECT * FROM tb_pessoa WHERE 1 = 1 "); // SQL
+                sql.AppendLine(@"SELECT * FROM tb_pessoa INNER JOIN tb_municipio ON tb_pessoa.mun_id = tb_municipio.mun_id WHERE 1 = 1 "); // SQL
 
                 if (!string.IsNullOrWhiteSpace(pessoaFiltro.Nome))
                     sql.AppendLine(" AND pes_nome = @Nome");
@@ -255,6 +255,7 @@ namespace ControleEstoque.DAL
                         pessoa.Bairro = dados["pes_bairro"].ToString();
                         pessoa.Cep = dados["pes_cep"].ToString();
                         pessoa.Municipio.Id = (int)dados["mun_id"];
+                        pessoa.Municipio.Nome = dados["mun_nome"].ToString();
                         pessoa.DataCadastro = Convert.ToDateTime(dados["pes_data_cad"]);
                         pessoa.DataAtualizacao = Convert.ToDateTime(dados["pes_data_atualizacao"]);
                         pessoa.Status = Convert.ToChar(dados["pes_status"]);

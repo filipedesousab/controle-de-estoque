@@ -38,9 +38,9 @@ app.controller('ClienteController', function ($scope, $http) {
         $http.get("/Cliente/ListarClientesAtivos")
             .success(function (response) {
 
-                $scope.Fornecedores = response; // JSON
+                $scope.Clientes = response; // JSON
 
-                $scope.totalItems = $scope.Fornecedores.length;
+                $scope.totalItems = $scope.Clientes.length;
                 $scope.viewby = 10;
                 $scope.currentPage = 1;
                 $scope.itemsPerPage = $scope.viewby;
@@ -55,7 +55,7 @@ app.controller('ClienteController', function ($scope, $http) {
                     $scope.currentPage = 1;
                 }
 
-                if ($scope.Fornecedores.length == 0) {
+                if ($scope.Clientes.length == 0) {
                     $scope.noResult = "Sua Pesquisa não obteve resultados.";
                     $("#no-result").css("display", "block");
                 } else {
