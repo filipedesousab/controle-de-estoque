@@ -50,13 +50,13 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Endereço</span>
-                        <input type="text" id="rua" ng-model="Pessoa.Endereco" placeholder="Rua R, 555" class="form-control" />
+                        <input type="text" id="rua" ng-model="Pessoa.Endereco" readonly class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Bairro</span>
-                        <input type="text" id="bairro" ng-model="Pessoa.Bairro" placeholder="Socorro" class="form-control" />
+                        <input type="text" id="bairro" ng-model="Pessoa.Bairro" readonly class="form-control" />
                     </div>
                 </div>
             </div>
@@ -64,14 +64,14 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Cidade</span>
-                        <input type="text" id="cidade" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" class="form-control" />
+                        <input type="text" id="cidade" ng-model="Pessoa.Municipio.Nome" readonly class="form-control" />
                         <input type="hidden" id="ibge" value="" ng-model="Pessoa.Municipio.Id" />
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">UF</span>
-                        <input type="text" id="uf" ng-model="Pessoa.Municipio.Estado.Uf" placeholder="PE" class="form-control" />
+                        <input type="text" id="uf" ng-model="Pessoa.Municipio.Estado.Uf" readonly class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -79,7 +79,17 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <button type="submit" class="form-control btn btn-primary">Salvar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                </div>
+                <div class="col-md-3">
+                    <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
+                    <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
                 </div>
             </div>
         </div>

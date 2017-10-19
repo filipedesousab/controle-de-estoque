@@ -12,7 +12,7 @@ namespace ControleEstoque.DAL
     // Esta classe é responsável por criar uma conexão com o banco de dados de forma genérica
     public class Connection
     {
-        private static string connString = @"Server=; Port=3306; Database=; Uid=; Pwd=;";
+        private static string connString = @"Server=bd-ce.mysql.uhserver.com; Port=3306; Database=bd_ce; Uid=ceapp; Pwd=gfstd2017*FG;";
         //private static string connString = @"Server=localhost; Port=3306; Database=bd_controle_estoque; Uid=root; Pwd=;";
         private static MySqlConnection conn = null; // Objeto que vai receber a conexão
 

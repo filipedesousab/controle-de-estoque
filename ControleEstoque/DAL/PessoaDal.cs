@@ -381,7 +381,7 @@ namespace ControleEstoque.DAL
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@IdPessoa", pessoa.Id);
                 cmd.Parameters.AddWithValue("@Email", pessoa.Email.Trim());
-                int lines = (int)cmd.ExecuteScalar();
+                long lines = (long)cmd.ExecuteScalar();
 
                 if (lines > 0) // Se o número de lines for maior que 0 já existe registro em outro usuário
                 {
