@@ -27,6 +27,7 @@ app.controller('FornecedorController', function ($scope, $http) {
                 else
                     msgAlerta = "Cadastrado com sucesso";
                 alert(msgAlerta);
+                $scope.search();
             })
             .error(function (data, status, headers, config) {
                 // Lança o erro no console do navegador caso ocorra
