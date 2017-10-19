@@ -34,16 +34,19 @@ $.validarCampos = function (array, callback) {
                 retorno = validaUf();
                 break;
             case 'dinheiro':
-                validaDinheiro();
+                retorno = validaDinheiro();
                 break;
             case 'descricao':
-                validaDescricao();
+                retorno = validaDescricao();
                 break;
             case 'quantidade':
-                validaQuantidade();
+                retorno = validaQuantidade();
                 break;
             case 'fornecedor':
-                validaFornecedor();
+                retorno = validaFornecedor();
+                break;
+            case 'preco':
+                retorno = validaPreco();
                 break;
         }
         if (!retorno) {
@@ -87,11 +90,13 @@ function validaData(value = "") {
     var elemento = value == "" ? $('.data-validate') : value;
     var valor = $(elemento).val().replace(/\D*/g, "");
     if ($(elemento).val() == "" || $(elemento).val() == undefined || /^[^0-9]+$/g.test(valor)) {
-        $('div .' + $(elemento).attr('name')).html('Data invalida.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Data invalida.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
         return true;
     }
 }
@@ -100,27 +105,27 @@ function validaPreco(value = "") {
     var elemento = value == "" ? $('.preco-validate') : value;
     var valor = $(elemento).val().replace(',','');
     if ($(elemento).val() == "" || $(elemento).val() == undefined || /^[^0-9]+$/g.test(valor)) {
-        $('div .' + $(elemento).attr('name')).html('Valor invalido.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Valor invalido.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
         return true;
     }
 }
 
 function validaNome(value = "") {
     var elemento = value == "" ? $('.nome-validate') : value;
-    if ($(elemento).val() == "" || $(elemento).val() == undefined) {
-        $('div .' + $(elemento).attr('name')).html('Insira um nome.');
-        $('div .' + $(elemento).attr('name')).show();
-        return false;
-    } else if (!/^[A-Za-z·‡‚„ÈËÍÌÔÛÙıˆ˙ÁÒ¡¿¬√…»Õœ”‘’÷⁄«— ]+$/.test($(elemento).val())) {
-        $('div .' + $(elemento).attr('name')).html('Caracteres invalidos! Insira apenas letras.');
-        $('div .' + $(elemento).attr('name')).show();
+    if ($(elemento).val() == "" || $(elemento).val() == undefined || !/^[A-Za-z·‡‚„ÈËÍÌÔÛÙıˆ˙ÁÒ¡¿¬√…»Õœ”‘’÷⁄«— ]+$/.test($(elemento).val())) {
+        //$('div .' + $(elemento).attr('name')).html('Caracteres invalidos! Insira apenas letras.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
         return true;
     }
 }
@@ -128,11 +133,13 @@ function validaNome(value = "") {
 function validaDescricao(value = "") {
     var elemento = value == "" ? $('.descricao-validate') : value;
     if ($(elemento).val() == "" || $(elemento).val() == undefined) {
-        $('div .' + $(elemento).attr('name')).html('Insira uma descricao.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Insira uma descricao.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
         return true;
     }
 }
@@ -140,11 +147,13 @@ function validaDescricao(value = "") {
 function validaCampoNotNull(value = "") {
     var elemento = value == "" ? $('.notnull-validate') : value;
     if ($(elemento).val() == "" || $(elemento).val() == undefined) {
-        $('div .' + $(elemento).attr('name')).html('Dado invalido.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Dado invalido.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
         return true;
     }
 }
@@ -153,11 +162,13 @@ function validaNumero(value = "") {
     var elemento = value == "" ? $('.numero-validate') : value;
     var valor = $(elemento).val();
     if ($(elemento).val() == "" || $(elemento).val() == undefined || /^[^0-9]+$/g.test(valor)) {
-        $('div .' + $(elemento).attr('name')).html('Valor invalido.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Valor invalido.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
         return true;
     }
 }
@@ -166,13 +177,15 @@ function validaNumeroComMascara(value = "") {
     var elemento = value == "" ? $('.numero-mask-validate') : value;
     var valor = $(elemento).val().replace(/\D*/g, "");
     if ($(elemento).val() == "" || $(elemento).val() == undefined || /^[^0-9]+$/g.test(valor)) {
-        $('div .' + $(elemento).attr('name')).html('Valor invalido.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Valor invalido.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
+        return true;
     }
-    return true;
 }
 
 function validaEmail(value = "") {
@@ -180,13 +193,15 @@ function validaEmail(value = "") {
     var valor = $(elemento).val();
     var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if ($(elemento).val() == "" || $(elemento).val() == undefined || !regex.test(valor)) {
-        $('div .' + $(elemento).attr('name')).html('Email invalido.');
-        $('div .' + $(elemento).attr('name')).show();
+        //$('div .' + $(elemento).attr('name')).html('Email invalido.');
+        //$('div .' + $(elemento).attr('name')).show();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'true');
         return false;
     } else {
-        $('div .' + $(elemento).attr('name')).hide();
+        //$('div .' + $(elemento).attr('name')).hide();
+        $(elemento).closest('.input-group').attr('invalido', 'true').attr('invalido', 'false');
+        return true;
     }
-    return true;
 }
 
 function validaDdd() {
@@ -213,6 +228,12 @@ function validaCidade() {
 function validaUf() {
     return validaCampoNotNull($('.uf-validate'));
 }
+function validaFornecedor() {
+    return validaNumero($('.fornecedor-validate'));
+}
+function validaQuantidade() {
+    return validaNumero($('.quantidade-validate'));
+}
 
 $(document).on("keyup", ".data-mascara", function (argument) {
     mascaraData(this);
@@ -237,7 +258,6 @@ $(document).on("keyup", ".nome-validate", function (argument) {
 $(document).on("keyup", ".descricao-validate", function (argument) {
     validaDescricao(this);
 });
-
 $(document).on("keyup", ".numero-validate", function (argument) {
     validaNumero(this);
 });

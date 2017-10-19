@@ -1,5 +1,9 @@
 ﻿/*Main CSS*/
 
+[invalido="true"] {
+    border-color: #ff8989;
+    box-shadow: #F00 0px 0px 16px -3px;
+}
 .form-add-edit .row {
     padding-bottom: 5px;
 }

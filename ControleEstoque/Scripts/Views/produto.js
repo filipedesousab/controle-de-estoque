@@ -3,19 +3,22 @@
 app.controller('ProdutoController', function ($scope, $http) {
 
     $scope.adicionarProduto = function () {
-        $http({
-            url: '/Produto/Adicionar',
-            method: 'POST',
-            data: { Produto: $scope.Produto }
-        })
-            .success(function (data, status, headers, config) {
-                var msgAlerta = data == -1 ? "Erro no cadastro" : "Cadastrado com sucesso";
-                alert(msgAlerta);
+        var validacao = $.validarCampos(['nome', 'descricao', 'quantidade', 'preco', 'fornecedor']);
+        if (validacao) {
+            $http({
+                url: '/Produto/Adicionar',
+                method: 'POST',
+                data: { Produto: $scope.Produto }
             })
-            .error(function (data, status, headers, config) {
-                // Lança o erro no console do navegador caso ocorra
-                console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
-            });
+                .success(function (data, status, headers, config) {
+                    var msgAlerta = data == -1 ? "Erro no cadastro" : "Cadastrado com sucesso";
+                    alert(msgAlerta);
+                })
+                .error(function (data, status, headers, config) {
+                    // Lança o erro no console do navegador caso ocorra
+                    console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
+                });
+        }
     };
 
     $scope.search = function (userValue) {

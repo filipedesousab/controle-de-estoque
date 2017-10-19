@@ -17,7 +17,7 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Email</span>
-                        <input type="text" name="email" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control email-validate" />
+                        <input type="email" name="email" ng-model="Pessoa.Email" placeholder="cliente@cliente.com" id="email" class="form-control email-validate" />
                         <div class="email input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
@@ -54,7 +54,8 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Endereço</span>
-                        <input type="text" name="endereco" ng-model="Pessoa.Endereco" readonly id="rua" class="form-control endereco-validate" value="0,00" />
+                        <input type="text" name="endereco" ng-model="Pessoa.Endereco" id="rua" class="form-control endereco-validate" readonly placeholder="Rua R, 100" value="" />
+                        <div class="endereco input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
             </div>
@@ -62,20 +63,23 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Bairro</span>
-                        <input type="text" name="bairro" ng-model="Pessoa.Bairro" readonly id="bairro" class="form-control bairro-validate" />
+                        <input type="text" name="bairro" ng-model="Pessoa.Bairro" placeholder="Socorro" readonly id="bairro" class="form-control bairro-validate" />
+                        <div class="bairro input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Cidade</span>
-                        <input type="text" name="cidade" ng-model="Pessoa.Municipio.Nome" readonly id="cidade" class="form-control cidade-validate" />
+                        <input type="text" name="cidade" ng-model="Pessoa.Municipio.Nome" placeholder="Jaboatão" readonly id="cidade" class="form-control cidade-validate" />
+                        <div class="cidade input-group-addon campo-erro" style="display:none;"></div>
                         <input type="hidden" id="ibge" value="" ng-model="Pessoa.Municipio.Id" />
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">UF</span>
-                        <input type="text" name="uf" ng-model="Pessoa.Municipio.Estado.Uf" readonly id="uf" class="form-control uf-validate" />
+                        <input type="text" name="uf" ng-model="Pessoa.Municipio.Estado.Uf" placeholder="PE" readonly id="uf" class="form-control uf-validate" />
+                        <div class="uf input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -84,18 +88,17 @@
                 </div>
                 <div class="col-md-3">
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-7">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
+                        <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
-                    <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
-                </div>
-            </div>
         </div>
     </form>
     <div class="table-responsive">
@@ -103,8 +106,8 @@
             <thead class="thead">
                 <tr>
                     <td>Nome</td>
-                    <td>Nascimento</td>
                     <td>Documento</td>
+                    <td>Endereco</td>
                     <td>Ação</td>
                 </tr>
             </thead>
