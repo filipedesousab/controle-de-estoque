@@ -42,10 +42,7 @@
                         <span class="input-group-addon">Fornecedor</span>
                         <select name="fornecedor" ng-model="Produto.Fornecedor.Id" class="form-control fornecedor-validate">
                             <option value="" selected="selected">Selecione...</option>
-                            <option value="2">Sony</option>
-                            <option value="2">LG</option>
-                            <option value="2">Samsung</option>
-                            <option value="2">Motorola</option>
+                            <option ng-repeat="Fornecedor in Fornecedores" value="{{Fornecedor.Id}}">{{Fornecedor.Nome}}</option>
                         </select>
                         <div class="fornecedor input-group-addon campo-erro" style="display:none;"></div>
                     </div>

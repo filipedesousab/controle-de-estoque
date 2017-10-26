@@ -20,11 +20,19 @@ app.controller('ProdutoController', function ($scope, $http) {
                 });
         }
     };
+    $scope.obterFornecedores = function () {
+        $http.get("/Fornecedor/ListarFornecedoresAtivos")
+            .success(function (response) {
+                console.log(response);
+
+                $scope.Fornecedores = response;
+
+            });
+    }
 
     $scope.search = function (userValue) {
         $http.get("/Produto/ObterRegistros")
             .success(function (response) {
-
                 $scope.Produtos = response; // JSON
 
                 $scope.totalItems = $scope.Produtos.length;
@@ -48,6 +56,7 @@ app.controller('ProdutoController', function ($scope, $http) {
                 } else {
                     $("#no-result").css("display", "none");
                 }
+                $scope.obterFornecedores();
 
             }).error(function (data, status, headers, config) {
                 console.log(status);
@@ -56,7 +65,7 @@ app.controller('ProdutoController', function ($scope, $http) {
 
     $scope.selecionarProduto = function (id) {
         $http({
-            url: '/Pessoa/ObterRegistro',
+            url: '/Produto/ObterRegistro',
             method: 'POST',
             data: { idProduto: id }
         })

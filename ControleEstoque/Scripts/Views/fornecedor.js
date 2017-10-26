@@ -31,6 +31,8 @@ app.controller('FornecedorController', function ($scope, $http) {
                             msgAlerta = "Cadastrado com sucesso";
                         alert(msgAlerta);
                         $scope.search();
+                        $scope.Pessoa = [];
+                        //$scope.apply();
                     })
                     .error(function (data, status, headers, config) {
                         // Lança o erro no console do navegador caso ocorra
