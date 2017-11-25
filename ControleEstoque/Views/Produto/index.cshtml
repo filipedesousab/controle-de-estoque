@@ -4,7 +4,7 @@
 }
 
 <div ng-controller="ProdutoController" class="conteudo-dashboard">
-    <form action="#" method="post" id="form-novo" class="form" ng-submit="adicionarProduto()" novalidate>
+    <form name="myForm" ng-submit="adicionarProduto()" novalidate>
         <div class="form-add-edit">
             <div class="row">
                 <div class="col-md-6">
@@ -23,32 +23,40 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Quantidade</span>
                         <input type="number" name="quantidade" ng-model="Produto.QuantidadeEstoque" value="" placeholder="99" class="form-control quantidade-validate" />
                         <div class="quantidade input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Preço R$</span>
                         <input type="text" name="dinheiro" ng-model="Produto.PrecoVenda" id="dinheiro" class="form-control dinheiro-mascara preco-validate" placeholder="99,90" value="0,00" />
                         <div class="preco dinheiro input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Fornecedor</span>
                         <select name="fornecedor" ng-model="Produto.Fornecedor.Id" class="form-control fornecedor-validate">
-                            <option value="" selected="selected">Selecione...</option>
-                            <option ng-repeat="Fornecedor in Fornecedores" value="{{Fornecedor.Id}}">{{Fornecedor.Nome}}</option>
+                            <option value="0" selected="selected">Selecione...</option>
+                            <option ng-repeat="Fornecedor in Fornecedores" ng-selected="Produto.Fornecedor.Id == Fornecedor.Id" value="{{Fornecedor.Id}}">{{Fornecedor.Nome}}</option>
                         </select>
                         <div class="fornecedor input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                </div>
                 <div class="col-md-3">
-                    <input type="submit" name="submit" value="Salvar" class="form-control btn btn-primary" />
+                    <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
+                    <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
                 </div>
             </div>
         </div>

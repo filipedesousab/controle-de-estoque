@@ -137,7 +137,6 @@ namespace ControleEstoque.DAL
                     produto.QuantidadeEstoque = (int)dados["pro_quantidade_estoque"];
                     produto.PrecoVenda = (double)dados["pro_preco_venda"];
                     produto.Fornecedor.Id = (int)dados["pes_id"];
-                    produto.Fornecedor.Nome = dados["pes_nome"].ToString();
                 }
 
                 return produto; // Retorna objeto

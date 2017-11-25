@@ -3,30 +3,52 @@
 app.controller('ProdutoController', function ($scope, $http) {
 
     $scope.adicionarProduto = function () {
-        var validacao = $.validarCampos(['nome', 'descricao', 'quantidade', 'preco', 'fornecedor']);
-        if (validacao) {
+        //var validacao = $.validarCampos(['nome', 'descricao', 'quantidade', 'fornecedor']);
+        //if (validacao) {
+        if ($scope.OpSalvar) {
             $http({
                 url: '/Produto/Adicionar',
                 method: 'POST',
                 data: { Produto: $scope.Produto }
             })
                 .success(function (data, status, headers, config) {
-                    var msgAlerta = data == -1 ? "Erro no cadastro" : "Cadastrado com sucesso";
+                    var msgAlerta = data == "-1" ? "Erro no cadastro" : "Cadastrado com sucesso";
                     alert(msgAlerta);
                 })
                 .error(function (data, status, headers, config) {
                     // Lança o erro no console do navegador caso ocorra
                     console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
                 });
+        } else {
+            $http({
+                url: '/Produto/Alterar',
+                method: 'POST',
+                data: { Produto: $scope.Produto }
+            })
+                .success(function (data, status, headers, config) {
+                    var msgAlerta = "";
+                    if (data == "0")
+                        msgAlerta = "Alterado com sucesso.";
+                    else
+                        msgAlerta = "Erro na alteração.";
+                    alert(msgAlerta);
+                    $scope.Produto = [];
+                    $scope.OpSalvar = true;
+                    $scope.search();
+                })
+                .error(function (data, status, headers, config) {
+                    // Lança o erro no console do navegador caso ocorra
+                    console.log("Erro: " + status + "\nConfig: " + JSON.stringify(config) + "\nData:\n" + data);
+                });
         }
+        //}
+
     };
     $scope.obterFornecedores = function () {
         $http.get("/Fornecedor/ListarFornecedoresAtivos")
             .success(function (response) {
                 console.log(response);
-
                 $scope.Fornecedores = response;
-
             });
     }
 
@@ -64,14 +86,14 @@ app.controller('ProdutoController', function ($scope, $http) {
     }
 
     $scope.selecionarProduto = function (id) {
+        $scope.OpSalvar = false;
         $http({
             url: '/Produto/ObterRegistro',
             method: 'POST',
             data: { idProduto: id }
         })
             .success(function (data, status, headers, config) {
-                //var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Fornecedor removido com sucesso";
-                //alert(msgAlerta);
+                $scope.Produto = data; // JSON
                 console.log(data);
             })
             .error(function (data, status, headers, config) {
@@ -96,7 +118,13 @@ app.controller('ProdutoController', function ($scope, $http) {
             });
     }
 
+    $scope.cancelarAlteracao = function () {
+        $scope.Produto = [];
+        $scope.OpSalvar = true;
+    }
+
     $(document).ready(function () {
+        $scope.OpSalvar = true;
         $scope.search();
     });
     

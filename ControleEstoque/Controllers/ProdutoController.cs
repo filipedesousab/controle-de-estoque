@@ -55,8 +55,8 @@ namespace ControleEstoque.Controllers
         [HttpPost]
         public JsonResult ObterRegistro(int idProduto)
         {
-            PessoaDal pessoaDal = new PessoaDal();
-            var resultado = pessoaDal.ObterRegistro(idProduto);
+            ProdutoDal produtoDal = new ProdutoDal();
+            var resultado = produtoDal.ObterRegistro(idProduto);
             return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
@@ -68,14 +68,21 @@ namespace ControleEstoque.Controllers
         [HttpPost]
         public string Alterar(Produto produto)
         {
-            ProdutoDal produtoDal = new ProdutoDal(); // Cria Instancia da DAL
-
-            bool result = produtoDal.Alterar(produto); // Chama o método Salvar e guarda o resultado na variavel result
-            if (result)
+            try
             {
-                return "0"; // Sucesso
+                ProdutoDal produtoDal = new ProdutoDal(); // Cria Instancia da DAL
+
+                bool result = produtoDal.Alterar(produto); // Chama o método Salvar e guarda o resultado na variavel result
+                if (result)
+                {
+                    return "0"; // Sucesso
+                }
+                else
+                {
+                    return "-1"; // Erro
+                }
             }
-            else
+            catch
             {
                 return "-1"; // Erro
             }
