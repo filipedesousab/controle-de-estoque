@@ -152,6 +152,7 @@ app.controller('ProdutoController', function ($scope, $http) {
         $scope.myForm.$setPristine();
         $scope.enviado = false;
         $scope.erro = false;
+        $scope.submited = false;
         $scope.Produto = null;
         $scope.OpSalvar = true;
     }

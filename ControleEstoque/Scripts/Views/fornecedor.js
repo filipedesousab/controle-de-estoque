@@ -2,10 +2,20 @@
 
 app.controller('FornecedorController', function ($scope, $http) {
     
-    $scope.adicionarFornecedor = function () {
-        var validacao = $.validarCampos(['nome', 'email', 'ddd', 'telefone', 'documento', 'cep', 'endereco', 'bairro', 'cidade', 'uf']);
+    $scope.submited = false;
+    $scope.enviado = false;
+    $scope.erro = false;
+    $scope.msgSucesso = "";
 
-        if (validacao) {
+    $scope.checkFields = function () {
+        $scope.submited = true;
+    };
+
+    $scope.adicionarFornecedor = function () {
+        $scope.enviado = false;
+        if ($scope.myForm.$valid) {
+            $scope.myForm.$setPristine();
+
             $scope.Pessoa.Endereco = document.getElementById('rua').value;
             $scope.Pessoa.Bairro = document.getElementById('bairro').value;
             $scope.Pessoa.TipoDocumento = "CNPJ";
@@ -22,17 +32,21 @@ app.controller('FornecedorController', function ($scope, $http) {
                     data: { pessoa: $scope.Pessoa }
                 })
                     .success(function (data, status, headers, config) {
-                        var msgAlerta = "";
-                        if (data == "-1")
-                            msgAlerta = "Erro no cadastro";
-                        else if (data == "-2")
-                            msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
-                        else
-                            msgAlerta = "Cadastrado com sucesso";
-                        alert(msgAlerta);
+                        if (data == "-1") {
+                            $scope.msgErro = "Ocorreu um erro inesperado.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else if (data == "-2") {
+                            $scope.msgErro = "Já existe uma pessoa cadastrada com esse e-mail.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else {
+                            $scope.msgSucesso = "Fornecedor cadastrado com sucesso.";
+                            $scope.enviado = true;
+                            $scope.submited = false;
+                        }
                         $scope.search();
-                        $scope.Pessoa = [];
-                        //$scope.apply();
+                        $scope.Pessoa = null;
                     })
                     .error(function (data, status, headers, config) {
                         // Lança o erro no console do navegador caso ocorra
@@ -46,15 +60,20 @@ app.controller('FornecedorController', function ($scope, $http) {
                     data: { pessoa: $scope.Pessoa }
                 })
                     .success(function (data, status, headers, config) {
-                        var msgAlerta = "";
-                        if (data == "-1")
-                            msgAlerta = "Erro no cadastro";
-                        else if (data == "-2")
-                            msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
-                        else
-                            msgAlerta = "Alterado com sucesso";
-                        alert(msgAlerta);
-                        $scope.Pessoa = [];
+                        if (data == "-1") {
+                            $scope.msgErro = "Ocorreu um erro inesperado.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else if (data == "-2") {
+                            $scope.msgErro = "Já existe uma pessoa cadastrada com esse e-mail.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else {
+                            $scope.msgSucesso = "Fornecedor alterado com sucesso.";
+                            $scope.enviado = true;
+                            $scope.submited = false;
+                        }
+                        $scope.Pessoa = null;
                         $scope.OpSalvar = true;
                         $scope.search();
                     })
@@ -100,6 +119,8 @@ app.controller('FornecedorController', function ($scope, $http) {
     }
 
     $scope.selecionarFornecedor = function (id) {
+        $scope.myForm.$setPristine();
+        $scope.enviado = false;
         $scope.OpSalvar = false;
         $http({
             url: '/Pessoa/ObterRegistro',
@@ -123,8 +144,16 @@ app.controller('FornecedorController', function ($scope, $http) {
             data: { idPessoa: id }
         })
             .success(function (data, status, headers, config) {
-                var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Fornecedor removido com sucesso";
-                alert(msgAlerta);
+                if (data == "True") {
+                    $scope.msgSucesso = "Fornecedor removido com sucesso.";
+                    $scope.enviado = true;
+                    $scope.erro = false;
+                    $scope.submited = false;
+                } else {
+                    $scope.erro = true;
+                    $scope.enviado = false;
+                }
+                $scope.search();
             })
             .error(function (data, status, headers, config) {
                 // Lança o erro no console do navegador caso ocorra
@@ -133,7 +162,11 @@ app.controller('FornecedorController', function ($scope, $http) {
     }
 
     $scope.cancelarAlteracao = function () {
-        $scope.Pessoa = [];
+        $scope.myForm.$setPristine();
+        $scope.enviado = false;
+        $scope.erro = false;
+        $scope.submited = false;
+        $scope.Pessoa = null;
         $scope.OpSalvar = true;
     }
 

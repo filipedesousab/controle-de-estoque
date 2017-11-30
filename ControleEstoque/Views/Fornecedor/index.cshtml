@@ -5,7 +5,27 @@
 
 
 <div ng-controller="FornecedorController" class="conteudo-dashboard">
-    <form name="myForm" ng-submit="adicionarFornecedor()" novalidate>
+    <br />
+    <div class="row" ng-show="enviado">
+        <div class="alert alert-success" role="alert">
+            <p>{{msgSucesso}}</p>
+        </div>
+    </div>
+    <div class="row" ng-show="erro">
+        <div class="alert alert-danger" role="alert">
+            <p>{{msgErro}}</p>
+        </div>
+    </div>
+    <div class="row" ng-show="myForm.$invalid && submited">
+        <div class="alert alert-danger" role="alert">
+            <p class="error-span" ng-show="myForm.nome.$invalid && (!myForm.nome.$pristine || submited)">Preencha o nome.</p>
+            <p class="error-span" ng-show="myForm.email.$invalid && (!myForm.email.$pristine || submited)">Preencha o e-mail.</p>
+            <p class="error-span" ng-show="myForm.ddd.$invalid && (!myForm.ddd.$pristine || submited)">Preencha o DDD.</p>
+            <p class="error-span" ng-show="myForm.telefone.$invalid && (!myForm.telefone.$pristine || submited)">Preencha o telefone.</p>
+            <p class="error-span" ng-show="myForm.documento.$invalid && (!myForm.documento.$pristine || submited)">Preencha o documento.</p>
+        </div>
+    </div>
+    <form name="myForm" ng-submit="adicionarFornecedor()" novalidate >
         <div class="form-add-edit">
             <div class="row">
                 <div class="col-md-4">
@@ -25,7 +45,7 @@
                 <div class="col-md-2">
                     <div class="input-group">
                         <span class="input-group-addon">DDD</span>
-                        <input type="text" name="ddd" ng-model="Pessoa.Ddd" placeholder="81" class="form-control ddd-validate" required drt-numerico />
+                        <input type="text" name="ddd" maxlength="2" ng-model="Pessoa.Ddd" placeholder="81" class="form-control ddd-validate" required drt-numerico />
                         <div class="ddd input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
@@ -41,14 +61,14 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CNPJ</span>
-                        <input type="text" name="documento" ng-model="Pessoa.Documento" placeholder="72.356.373/0001-00" class="form-control documento-validate" drt-numerico />
+                        <input type="text" name="documento" maxlength="18" ng-model="Pessoa.Documento" placeholder="72.356.373/0001-00" class="form-control documento-validate" drt-numerico required />
                         <div class="documento input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">CEP</span>
-                        <input type="text" name="cep" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="cep-control cep-validate" drt-numerico />
+                        <input type="text" name="cep" id="cep" ng-model="Pessoa.Cep" onblur="pesquisacep(this.value);" placeholder="54160-660" class="form-control cep-validate" drt-numerico />
                         <div class="cep input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
@@ -97,8 +117,8 @@
                     <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
-                    <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
+                    <button type="submit" class="form-control btn btn-primary" ng-click="checkFields()" ng-show="OpSalvar">Salvar</button>
+                    <button type="submit" class="form-control btn btn-primary" ng-click="checkFields()" ng-show="!OpSalvar">Alterar</button>
                 </div>
             </div>
         </div>
