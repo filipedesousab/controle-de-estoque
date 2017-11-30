@@ -1,12 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
-using ControleEstoque.Controllers;
 using ControleEstoque.Models.Entities;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Text;
 
 namespace ControleEstoque.DAL
 {
@@ -63,7 +58,7 @@ namespace ControleEstoque.DAL
             }
             finally
             {
-                if (conn.State == ConnectionState.Open)
+                if (conn != null && conn.State == ConnectionState.Open)
                     Connection.CloseConnection();
             }
         }

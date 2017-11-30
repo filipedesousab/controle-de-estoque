@@ -1,9 +1,5 @@
 ﻿using ControleEstoque.DAL;
 using ControleEstoque.Models.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ControleEstoque.Controllers
@@ -96,8 +92,15 @@ namespace ControleEstoque.Controllers
         [HttpPost]
         public bool Deletar(int idProduto)
         {
-            ProdutoDal produtoDal = new ProdutoDal();
-            return produtoDal.Deletar(idProduto);
+            try
+            {
+                ProdutoDal produtoDal = new ProdutoDal();
+                return produtoDal.Deletar(idProduto);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
     }

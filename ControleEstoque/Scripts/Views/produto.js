@@ -12,24 +12,25 @@ app.controller('ProdutoController', function ($scope, $http) {
     };
 
     $scope.adicionarProduto = function () {
+        $scope.enviado = false;
         if ($scope.myForm.$valid) {
+            $scope.myForm.$setPristine();
             if ($scope.OpSalvar) {
                 $http({
                     url: '/Produto/Adicionar',
                     method: 'POST',
-                    data: { Produto: $scope.Produto }
+                    data: { produto: $scope.Produto }
                 })
                     .success(function (data, status, headers, config) {
                         if (data == "0") {
                             $scope.msgSucesso = "Produto cadastrado com sucesso.";
                             $scope.enviado = true;
-                            $scope.erro = false;
                             $scope.submited = false;
                         } else {
                             $scope.erro = true;
-                            $scope.enviado = false;
+                            $scope.submited = true;
                         }
-                        $scope.Produto = [];
+                        $scope.Produto = null;
                         $scope.OpSalvar = true;
                         $scope.search();
                     })
@@ -41,19 +42,18 @@ app.controller('ProdutoController', function ($scope, $http) {
                 $http({
                     url: '/Produto/Alterar',
                     method: 'POST',
-                    data: { Produto: $scope.Produto }
+                    data: { produto: $scope.Produto }
                 })
                     .success(function (data, status, headers, config) {
                         if (data == "0") {
                             $scope.msgSucesso = "Produto alterado com sucesso.";
                             $scope.enviado = true;
-                            $scope.erro = false;
                             $scope.submited = false;
                         } else {
                             $scope.erro = true;
-                            $scope.enviado = false;
+                            $scope.submited = true;
                         }
-                        $scope.Produto = [];
+                        $scope.Produto = null;
                         $scope.OpSalvar = true;
                         $scope.search();
                     })
@@ -106,6 +106,8 @@ app.controller('ProdutoController', function ($scope, $http) {
     }
 
     $scope.selecionarProduto = function (id) {
+        $scope.myForm.$setPristine();
+        $scope.enviado = false;
         $scope.OpSalvar = false;
         $http({
             url: '/Produto/ObterRegistro',
@@ -129,7 +131,7 @@ app.controller('ProdutoController', function ($scope, $http) {
             data: { idProduto: id }
         })
             .success(function (data, status, headers, config) {
-                if (data == "0") {
+                if (data == "True") {
                     $scope.msgSucesso = "Produto removido com sucesso.";
                     $scope.enviado = true;
                     $scope.erro = false;
@@ -138,6 +140,7 @@ app.controller('ProdutoController', function ($scope, $http) {
                     $scope.erro = true;
                     $scope.enviado = false;
                 }
+                $scope.search();
             })
             .error(function (data, status, headers, config) {
                 // Lança o erro no console do navegador caso ocorra
@@ -146,7 +149,10 @@ app.controller('ProdutoController', function ($scope, $http) {
     }
 
     $scope.cancelarAlteracao = function () {
-        $scope.Produto = [];
+        $scope.myForm.$setPristine();
+        $scope.enviado = false;
+        $scope.erro = false;
+        $scope.Produto = null;
         $scope.OpSalvar = true;
     }
 
