@@ -171,6 +171,7 @@ app.controller('FornecedorController', function ($scope, $http) {
     }
 
     $(document).ready(function () {
+        $scope.enviado = false;
         $scope.OpSalvar = true;
         $scope.search();
     });

@@ -2,10 +2,20 @@ var app = angular.module("App", ['ui.bootstrap']);
 
 app.controller('ClienteController', function ($scope, $http, $filter) {
 
-    $scope.adicionarCliente = function () {
-        var validacao = $.validarCampos(['nome', 'email', 'ddd', 'telefone', 'documento', 'cep', 'endereco', 'bairro', 'cidade', 'uf']);
+    $scope.submited = false;
+    $scope.enviado = false;
+    $scope.erro = false;
+    $scope.msgSucesso = "";
 
-        if (validacao) {
+    $scope.checkFields = function () {
+        $scope.submited = true;
+    };
+
+    $scope.adicionarCliente = function () {
+        $scope.enviado = false;
+        if ($scope.myForm.$valid) {
+            $scope.myForm.$setPristine();
+
             $scope.Pessoa.Endereco = document.getElementById('rua').value;
             $scope.Pessoa.Bairro = document.getElementById('bairro').value;
             $scope.Pessoa.TipoDocumento = "CPF";
@@ -24,15 +34,21 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
                     data: { pessoa: $scope.Pessoa }
                 })
                     .success(function (data, status, headers, config) {
-                        var msgAlerta = "";
-                        if (data == "-1")
-                            msgAlerta = "Erro no cadastro";
-                        else if (data == "-2")
-                            msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
-                        else
-                            msgAlerta = "Cadastrado com sucesso";
-                        alert(msgAlerta);
+                        if (data == "-1") {
+                            $scope.msgErro = "Ocorreu um erro inesperado.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else if (data == "-2") {
+                            $scope.msgErro = "Já existe uma pessoa cadastrada com esse e-mail.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else {
+                            $scope.msgSucesso = "Cliente cadastrado com sucesso.";
+                            $scope.enviado = true;
+                            $scope.submited = false;
+                        }
                         $scope.search();
+                        $scope.Pessoa = null;
                     })
                     .error(function (data, status, headers, config) {
                         // Lança o erro no console do navegador caso ocorra
@@ -46,15 +62,20 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
                     data: { pessoa: $scope.Pessoa }
                 })
                     .success(function (data, status, headers, config) {
-                        var msgAlerta = "";
-                        if (data == "-1")
-                            msgAlerta = "Erro no cadastro";
-                        else if (data == "-2")
-                            msgAlerta = "Já existe uma pessoa cadastrada com esse e-mail.";
-                        else
-                            msgAlerta = "Alterado com sucesso";
-                        alert(msgAlerta);
-                        $scope.Pessoa = [];
+                        if (data == "-1") {
+                            $scope.msgErro = "Ocorreu um erro inesperado.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else if (data == "-2") {
+                            $scope.msgErro = "Já existe uma pessoa cadastrada com esse e-mail.";
+                            $scope.erro = true;
+                            $scope.submited = true;
+                        } else {
+                            $scope.msgSucesso = "Cliente alterado com sucesso.";
+                            $scope.enviado = true;
+                            $scope.submited = false;
+                        }
+                        $scope.Pessoa = null;
                         $scope.OpSalvar = true;
                         $scope.search();
                     })
@@ -100,6 +121,8 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
     }
 
     $scope.selecionarCliente = function (id) {
+        $scope.myForm.$setPristine();
+        $scope.enviado = false;
         $scope.OpSalvar = false;
         $http({
             url: '/Pessoa/ObterRegistro',
@@ -125,8 +148,16 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
             data: { idPessoa: id }
         })
             .success(function (data, status, headers, config) {
-                var msgAlerta = data == -1 ? "Erro ao tentar remover" : "Cliente removido com sucesso";
-                alert(msgAlerta);
+                if (data == "True") {
+                    $scope.msgSucesso = "Cliente removido com sucesso.";
+                    $scope.enviado = true;
+                    $scope.erro = false;
+                    $scope.submited = false;
+                } else {
+                    $scope.erro = true;
+                    $scope.enviado = false;
+                }
+                $scope.search();
             })
             .error(function (data, status, headers, config) {
                 // Lança o erro no console do navegador caso ocorra
@@ -135,11 +166,16 @@ app.controller('ClienteController', function ($scope, $http, $filter) {
     }
 
     $scope.cancelarAlteracao = function () {
-        $scope.Pessoa = [];
+        $scope.myForm.$setPristine();
+        $scope.enviado = false;
+        $scope.erro = false;
+        $scope.submited = false;
+        $scope.Pessoa = null;
         $scope.OpSalvar = true;
     }
 
     $(document).ready(function () {
+        $scope.enviado = false;
         $scope.OpSalvar = true;
         $scope.search();
     });

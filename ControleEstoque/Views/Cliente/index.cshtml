@@ -4,6 +4,26 @@
 }
 
 <div ng-controller="ClienteController" class="conteudo-dashboard">
+    <br />
+    <div class="row" ng-show="enviado">
+        <div class="alert alert-success" role="alert">
+            <p>{{msgSucesso}}</p>
+        </div>
+    </div>
+    <div class="row" ng-show="erro">
+        <div class="alert alert-danger" role="alert">
+            <p>{{msgErro}}</p>
+        </div>
+    </div>
+    <div class="row" ng-show="myForm.$invalid && submited">
+        <div class="alert alert-danger" role="alert">
+            <p class="error-span" ng-show="myForm.nome.$invalid && (!myForm.nome.$pristine || submited)">Preencha o nome.</p>
+            <p class="error-span" ng-show="myForm.email.$invalid && (!myForm.email.$pristine || submited)">Preencha o e-mail.</p>
+            <p class="error-span" ng-show="myForm.ddd.$invalid && (!myForm.ddd.$pristine || submited)">Preencha o DDD.</p>
+            <p class="error-span" ng-show="myForm.telefone.$invalid && (!myForm.telefone.$pristine || submited)">Preencha o telefone.</p>
+            <p class="error-span" ng-show="myForm.documento.$invalid && (!myForm.documento.$pristine || submited)">Preencha o documento.</p>
+        </div>
+    </div>
     <form  name="myForm" ng-submit="adicionarCliente()" novalidate>
         <div class="form-add-edit">
             <div class="row">
@@ -95,8 +115,8 @@
                         <button type="button" class="form-control btn btn-danger" ng-click="cancelarAlteracao()" ng-show="!OpSalvar">Cancelar Alteração</button>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="form-control btn btn-primary" ng-show="OpSalvar">Salvar</button>
-                        <button type="submit" class="form-control btn btn-primary" ng-show="!OpSalvar">Alterar</button>
+                        <button type="submit" class="form-control btn btn-primary" ng-click="checkFields()" ng-show="OpSalvar">Salvar</button>
+                        <button type="submit" class="form-control btn btn-primary" ng-click="checkFields()" ng-show="!OpSalvar">Alterar</button>
                     </div>
                 </div>
             </div>
