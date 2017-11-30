@@ -60,7 +60,7 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">CPF</span>
-                        <input type="text" name="documento" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control documento-validate" drt-numerico />
+                        <input type="text" name="documento" ng-minlength="14" maxlength="18" ng-model="Pessoa.Documento" placeholder="09284003440" id="documento" class="form-control documento-validate" drt-numerico />
                         <div class="documento input-group-addon campo-erro" style="display:none;"></div>
                     </div>
                 </div>
